@@ -356,6 +356,9 @@ body.project-page #marketRail{display:none!important}
 .store-actions,.store-tools{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.store-home h3 small{font:normal 14px Arial;color:var(--text-mute)}.store-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px}.store-card{--signal:#9faaa4;display:grid;grid-template-columns:76px minmax(0,1fr);align-items:start;gap:12px;padding:16px;background:#1a2528;border:1px solid var(--border);border-top:3px solid var(--signal);border-radius:4px}.store-card.up{--signal:#94d3a8}.store-card.down{--signal:#edb879}.store-art{padding:0;box-shadow:none;border:0}.store-art .box-name{font-size:13px}.store-info h4{margin:0;color:var(--text);overflow-wrap:anywhere}.store-info p{margin:6px 0 0;font-size:12px}.store-info p strong{display:block;font:600 25px Georgia;color:var(--signal)}.store-info small{color:var(--text-mute)}.store-tools{grid-column:1/-1;margin:0}.store-tools button{font-size:12px;padding:6px 8px}.stock-count,.account-facts{display:flex;flex-wrap:wrap;gap:12px 22px;margin:12px 0}.stock-count span,.account-facts span{font-size:12px;color:var(--text-mute)}.stock-count strong,.account-facts strong{display:block;color:var(--text);font-size:16px}.account-file{margin:9px 0;background:var(--panel-2);border:1px solid var(--border);border-radius:4px;padding:10px 14px;overflow-wrap:anywhere}.account-file summary{cursor:pointer}.account-file summary small{display:block;color:var(--text-mute);padding-left:16px}.account-file .bt{flex-wrap:wrap}.account-file .bt button{white-space:normal}
 #projectComposer{width:min(760px,94vw);max-height:90dvh;margin:auto;padding:0 18px 18px;color:var(--text);background:var(--panel);border:1px solid #8e7955;border-radius:6px;box-shadow:0 20px 70px #0009;overflow:auto;overscroll-behavior:contain}#projectComposer::backdrop{background:#0e1419af}.composer-head{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--panel);border-bottom:1px solid var(--border);padding:10px 0}.composer-head h2{font:normal 24px Georgia,serif;margin:0}.composer-head button{font-size:23px;line-height:1;padding:8px 12px}#projectComposer #newProject{margin:0;padding:0;border:0;background:none;box-shadow:none}#projectComposer #newProject>h3{display:none}body:has(#projectComposer[open]){overflow:hidden}#nv button[data-tab="7"],#nv button[data-tab="3"]{margin-top:12px;border-top:1px solid #596057}.quality-line{display:grid!important;grid-template-columns:1fr auto;gap:4px;padding:9px 0;text-transform:none!important}.quality-line .stars{letter-spacing:1px;color:var(--gold);font-size:12px}.quality-line output{font-variant-numeric:tabular-nums;color:#f0d9ad}.quality-line input[type=range]{grid-column:1/-1;appearance:none;width:100%;height:9px;margin:6px 0;border:0;padding:0;border-radius:9px;background:linear-gradient(90deg,#b99960 var(--filled),#111d20 var(--filled));cursor:pointer}.quality-line input::-webkit-slider-thumb{appearance:none;width:17px;height:17px;background:#eed9aa;border:2px solid #756347;border-radius:50%}.quality-line input::-moz-range-thumb{width:15px;height:15px;background:#eed9aa;border-radius:50%}
 .clock-plan{padding:14px 17px;background:#1b292b;border-left:3px solid var(--gold);margin:12px 0}.clock-plan>strong{font:normal 23px Georgia;color:#f1d29a}.clock-plan small{color:var(--text-mute)}.time-lanes,.quality-read{display:grid;gap:6px;margin:9px 0}.time-lanes>div,.quality-read>div{display:grid;align-items:center;grid-template-columns:minmax(80px,110px) minmax(40px,1fr) 50px;gap:8px;font-size:13px}.time-lanes i{background:#131e20;height:7px;border-radius:3px;overflow:hidden}.time-lanes b{display:block;height:100%;background:#b49868}.time-lanes>div:nth-child(2) b{background:#7ba7a2}.time-lanes>div:nth-child(3) b{background:#b0949c}.quality-read meter{width:100%;accent-color:var(--gold)}.license-book summary{cursor:pointer;padding:12px 15px;font:18px Georgia;background:#283536;color:var(--gold-light)}.license-book{margin:8px 0}.license-book .c{margin:0}.license-games{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}.license-games button{width:68px;padding:0}.license-games .box-name{font-size:11px}@media(max-width:859px){#nv button[data-tab="7"],#nv button[data-tab="3"]{margin:0;border-top:0;border-left:1px solid #596057}}
+
+:root{--quality0:#d9b574;--quality1:#84afba;--quality2:#88baa1;--quality3:#b89acb;--quality4:#d58e79;--quality5:#a9b57b}
+.attention-budget{padding:13px;background:var(--panel-2);border:1px solid var(--border);border-radius:5px;display:grid;gap:6px}.attention-budget strong{color:var(--gold-light)}.attention-budget span{font-size:13px;color:var(--text-mute)}.attention-stack{display:flex;height:9px;border-radius:6px;overflow:hidden;background:#10191b}.attention-stack i{display:block;height:100%}.quality-name{cursor:help}.quality-line input[type=range]{height:12px;margin:9px 0}.quality-line input::-webkit-slider-thumb{width:21px;height:21px;box-shadow:0 2px 5px #0008}.quality-line input::-moz-range-thumb{width:19px;height:19px}.quality-read small{font-size:10px}
 </style><link rel="icon" href="data:,"></head><body>
 <header id="hd"></header><nav id="nv"></nav><main id="mn"></main><div id="windowSpace" hidden></div><div id="clockFeedback" role="status" hidden></div><aside id="marketRail" aria-label="Jeux en vente"></aside><div id="hoverTip" role="tooltip" hidden></div><div id="ts"></div><canvas id="cf"></canvas>
 <script>
@@ -391,23 +394,35 @@ const genreStars={
 function starText(n){return '★'.repeat(n)+'☆'.repeat(5-n);}
 function focusInputs(){return $$('#sheet-quality input[type=range]');}
 function focusValues(){return focusInputs().map(el=>+el.value);}
-function qualityEditor(){
- return sheetStart('quality')+'<p>Répartis 100 % de l’attention de l’équipe. Déplacer un curseur ajuste les cinq autres.</p>'+
- dimensions.map((name,i)=>'<label class="quality-line"><span>'+name+' <small class="stars"></small></span><output></output><input id="attention'+i+'" type="range" min="0" max="100" value="'+equalAttention[i]+'" oninput="adjustAttention('+i+')"></label>').join('')+sheetEnd();
+function attentionFit(genre, values){
+ const weights=genreStars[genre] || [3,3,3,3,3,3];
+ const total=weights.reduce((a,b)=>a+b,0);
+ const target=weights.map(w=>100*w/total);
+ return clamp(0,100,100- values.reduce((sum,v,i)=>sum+Math.abs(v-target[i]),0)/2);
 }
+const qualityDescriptions=['Scénario, personnages et narration.','Direction artistique, lisibilité et animations.','Mécaniques, équilibrage et plaisir de jeu.','Composition musicale et ambiance sonore.','Stabilité, performances et systèmes techniques.','Variété, profondeur et durée de vie.'];
+function qualityEditor(){
+ return sheetStart('quality')+'<p>Répartis les 100 % d’attention des développeurs entre les six qualités du jeu. Ce budget est distinct des points de production des métiers.</p><div class="attention-budget"><strong id="attentionTotal">100 / 100 %</strong><span id="attentionFit"></span><div class="attention-stack" id="attentionStack"></div></div>'+
+ dimensions.map((name,i)=>'<label class="quality-line"><span tabindex="0" class="quality-name">'+name+' <small class="stars"></small></span><output></output><input id="attention'+i+'" aria-label="'+name+'" type="range" min="0" max="100" value="'+equalAttention[i]+'" oninput="adjustAttention('+i+')"></label>').join('')+ '<button type="button" onclick="resetAttention()">Répartition équilibrée</button>'+sheetEnd();
+}
+function resetAttention(){focusInputs().forEach((el,i)=>el.value=equalAttention[i]);refreshAttention($('#pg')?.value || draftSource()?.genre);captureProjectForm();}
 function refreshAttention(genre){
  const fields=focusInputs();if(!fields.length)return;
- const weights=genreStars[genre];
+ const weights=genreStars[genre] || [3,3,3,3,3,3];
  fields.forEach((el,i)=>{
    const label=el.closest('label'),stars=starText(weights[i]);
-   label.title=genre+' · Importance de '+dimensions[i]+' : '+stars+' ('+weights[i]+'/5)';
+   const hint=genre+' · Importance : '+stars+' ('+weights[i]+'/5) — '+qualityDescriptions[i];
+   label.title=hint;label.querySelector('.quality-name').title=hint;
    label.querySelector('.stars').textContent=stars;
    label.querySelector('output').textContent=el.value+' %';
    el.style.setProperty('--filled',el.value+'%');
    el.setAttribute('aria-valuetext',el.value+' %, importance '+weights[i]+' sur 5');
  });
- const vals=focusValues(),peak=Math.max(...vals);
- $('#summary-quality').textContent=peak<=17?'Équilibrée':dimensions[vals.indexOf(peak)]+' · '+peak+' %';
+ const vals=focusValues(),fit=Math.round(attentionFit(genre,vals));
+ $('#attentionTotal').textContent=vals.reduce((a,b)=>a+b,0)+' / 100 % affectés';
+ $('#attentionFit').textContent='Cohérence du genre : '+fit+' %';
+ $('#attentionStack').innerHTML=vals.map((v,i)=>'<i title="'+dimensions[i]+' : '+v+' %" style="width:'+v+'%;background:var(--quality'+i+')"></i>').join('');
+ $('#summary-quality').textContent='Cohérence : '+fit+' %';
 }
 let dragMix=null;
 document.addEventListener('pointerdown',e=>{if(e.target.matches('#sheet-quality input'))dragMix=focusValues();});
@@ -421,18 +436,29 @@ function adjustAttention(active){
  for(const s of shares){const n=Math.floor(s.value);fields[s.i].value=n;left-=n;}
  shares.sort((a,b)=>(b.value%1)-(a.value%1));
  for(const s of shares.slice(0,left))fields[s.i].value=Number(fields[s.i].value)+1;
- refreshAttention($('#pg')?.value || draftSource().genre);
+ refreshAttention($('#pg')?.value || draftSource()?.genre);captureProjectForm();
 }
 function qualityResult(p,base){
- const budget=p.attention || equalAttention,weights=genreStars[p.genre];
- // Diminishing returns keep neglecting a discipline costly.
- const values=budget.map(v=>clamp(0,100,base+38*(Math.sqrt(v/100*6)-1)));
- const weighted=values.reduce((n,v,i)=>n+v*weights[i]**2,0)/weights.reduce((n,w)=>n+w*w,0);
- return {values:values.map(Math.round),score:Math.round(clamp(5,95,weighted))};
+ const budget=p.attention || equalAttention,weights=genreStars[p.genre] || [3,3,3,3,3,3];
+ const fit=attentionFit(p.genre,budget);
+ const total=weights.reduce((a,b)=>a+b,0);
+ const roleMix=[[0,.8,.2],[.2,0,.8],[.45,.55,0],[0,0,1],[.85,.15,0],[.25,.5,.25]];
+ const completion=CORE_ROLES.reduce((a,r)=>a+coverage(p,r),0)/3;
+ const values=budget.map((v,i)=>{
+   const progress=roleMix[i].reduce((a,w,j)=>a+w*coverage(p,CORE_ROLES[j]),0);
+   const target=100*weights[i]/total;
+   const allocation=clamp(0,1.25,Math.sqrt(v/target));
+   const craft=clamp(0,100,base+12*(progress-completion));
+   return Math.round(clamp(0,100,craft*allocation*(.25+.75*progress)));
+ });
+ const weighted=values.reduce((n,v,i)=>n+v*weights[i],0)/total;
+ const score=clamp(5,95,base+(weighted-base)*.32+completion*(6-30*(1-fit/100)));
+ return {values,score:Math.round(score),fit:Math.round(fit)};
 }
-function qualityBars(values,genre){
+function qualityBars(values,genre,attention){
  if(!values)return '';
- return '<div class="quality-read">'+dimensions.map((name,i)=>'<div title="'+genre+' · '+starText(genreStars[genre][i])+'"><span>'+name+'</span><meter min="0" max="100" value="'+values[i]+'"></meter><strong>'+values[i]+'/100</strong></div>').join('')+'</div>';
+ const weights=genreStars[genre] || [3,3,3,3,3,3];
+ return (attention?'<p class="mu">Cohérence de la direction : <strong>'+Math.round(attentionFit(genre,attention))+' %</strong></p>':'')+'<div class="quality-read">'+dimensions.map((name,i)=>'<div tabindex="0" title="'+genre+' · Importance : '+starText(weights[i])+' ('+weights[i]+'/5). '+qualityDescriptions[i]+'"><span>'+name+(attention?' <small class="mu">('+attention[i]+' %)</small>':'')+'</span><meter min="0" max="100" value="'+values[i]+'"></meter><strong>'+values[i]+'/100</strong></div>').join('')+'</div>';
 }
 function scheduleView(schedule){
  if(schedule.missing.length)return '<strong>Calendrier en attente</strong><p>Postes à pourvoir · '+schedule.missing.map(r=>DIS[r]).join(', ')+'</p>';
@@ -532,7 +558,7 @@ function inspectBox(i) {
     '<p><strong>'+r.score+'/100</strong> · '+nb(r.u)+' exemplaires</p><p>'+escapeAttribute(getLicense(r.franchiseId)?.name || r.name)+' · Épisode '+(r.installment || 1)+'</p>'+
     '<p>Bonus nostalgie pour une suite du même genre <strong>+'+(memoryBonus(r)*100).toFixed(1)+' %</strong></p>'+
     '<button aria-pressed="'+Boolean(r.collected)+'" onclick="toggleFavorite('+i+')">'+(r.collected?'Retirer des favoris':'Garder en favori')+'</button></div></div>'+
-    (r.qualities?qualityBars(r.qualities,r.genre):'')+'<div class="bt"><button onclick="closeModal();openGameGraph('+i+')">Voir les ventes</button><button class="go" onclick="closeModal()">Fermer</button></div>',true);
+    (r.qualities?qualityBars(r.qualities,r.genre,r.attention):'')+'<div class="bt"><button onclick="closeModal();openGameGraph('+i+')">Voir les ventes</button><button class="go" onclick="closeModal()">Fermer</button></div>',true);
 }
 function toggleFavorite(i){g.rel[i].collected=!g.rel[i].collected;save();$('#md')?.remove();render();inspectBox(i);}
 function studioBanner() {
@@ -2405,7 +2431,7 @@ function release(team = curTeam()) {
     startDay: p.startDay, devDays: g.day - (p.startDay ?? g.day),
     translations: p.translations || [],
   };
-  if(p.attention)record.qualities=qualityResult(p,productionScore(p)).values;
+  if(p.attention){record.qualities=qualityResult(p,productionScore(p)).values;record.attention=p.attention.slice();}
   record.receiptStart=g.day;
   record.franchiseId = p.franchiseId || createLicense(p.name).id;
   organicLaunchEvents(record,p);
@@ -2455,7 +2481,7 @@ function publishAddon(team, project, score) {
   var audience = profile.audience * Math.pow(.88,Math.min(game.dlcs || 0,6));
   var attach = clamp(.04,.58,audience * Math.pow(score/65,1.7) * (.91 + project.hype/320));
   (game.addons ||= []).push({
-    qualities:project.attention?qualityResult(project,productionScore(project)).values:null,name:project.name, day:g.day, score:score, price:dlcPrice(project.sc,project.dlcProfile),
+    attention:project.attention?.slice(),qualities:project.attention?qualityResult(project,productionScore(project)).values:null,name:project.name, day:g.day, score:score, price:dlcPrice(project.sc,project.dlcProfile),
     cost:project.spent, u:0, rev:0, attach:attach, remainder:0,
   });
   game.dlcs = (game.dlcs || 0)+1;
@@ -3134,7 +3160,7 @@ function pProj() {
       '</div>' +
       '<div class="clock-plan"><strong>'+Math.max(0,g.day-(p.startDay ?? g.day))+' jours écoulés</strong>'+
       (p.plannedDays?' · Prévision initiale '+p.plannedDays+' j':'')+'<div class="bar"><i style="width:'+Math.min(100,100*prog(p))+'%"></i></div><small>'+Math.round(100*prog(p))+' % du travail réalisé</small></div>'+
-      (p.attention?'<h4>Qualités du jeu</h4>'+qualityBars(qualityResult(p,productionScore(p)).values,p.genre):'')+
+      (p.attention?'<h4>Qualités du jeu</h4>'+qualityBars(qualityResult(p,productionScore(p)).values,p.genre,p.attention):'')+
       '<h4>Priorité de l’équipe</h4><div class="bt">' +
       Object.keys(PRIORITIES).map(key => '<button class="'+(key===p.priority?'on':'')+'" onclick="setProjectPriority(\''+key+'\')" '+
         tip({
@@ -3144,7 +3170,7 @@ function pProj() {
         }[key])+'>'+PRIORITIES[key].name+'</button>').join('') +
       '</div><p class="mu">La production accélère le contenu et augmente les bugs. La stabilisation consacre plus de temps aux tests.</p>' +
       '<p class="mu">Budget engagé <strong>'+fmt(p.spent)+'</strong> · Compétence sur le travail effectué : '+teamSkillText+'</p>' +
-      '<h4>Progression</h4>' +
+      '<h4>Temps de développement par métier</h4>' +
       Object.keys(p.need).map(function(k) {
         var pct = Math.min(100, p.done[k]/p.need[k]*100);
         return '<div class="row progress" '+tip(({

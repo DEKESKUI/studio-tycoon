@@ -376,15 +376,8 @@ details.archive-data>summary,details.license-fold>summary{cursor:pointer;color:v
 @media(max-width:600px){.quality-grid{grid-template-columns:1fr}}
 .quality-controls{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:5px}
 .quality-controls button{width:28px;height:25px;padding:0;font-size:16px;line-height:1}
-.quality-controls input[type=range]{appearance:none;width:100%;min-width:0;height:12px;margin:0;padding:0;border:0;border-radius:4px;cursor:pointer;--filled:0%;--limit:100%;
-  background:linear-gradient(90deg,var(--quality-color) 0 var(--filled),#263938 var(--filled) var(--limit),transparent var(--limit)),
-    repeating-linear-gradient(135deg,#606567 0 3px,#454a4b 3px 6px)}
-.quality-controls input[aria-disabled=true]{cursor:not-allowed}
-.quality-controls input::-webkit-slider-thumb{appearance:none;width:14px;height:18px;border:2px solid #756347;border-radius:4px;background:#eed9aa}
-.quality-controls input::-moz-range-thumb{width:10px;height:14px;border:2px solid #756347;border-radius:4px;background:#eed9aa}
-.quality-controls input[aria-disabled=true]::-webkit-slider-thumb{background:#989c9b;border-color:#616768}
-.quality-controls input[aria-disabled=true]::-moz-range-thumb{background:#989c9b;border-color:#616768}
-.attention-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.attention-actions button{padding:4px 8px;font-size:12px}
+.quality-controls input[type=number]{width:100%;min-width:0;text-align:center;font-variant-numeric:tabular-nums}
+.stat-entry{display:flex;align-items:center;gap:4px}.zero-note{white-space:nowrap;font-size:10px}.feature-warning{color:#ffac59}.attention-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.attention-actions button{padding:4px 8px;font-size:12px}
 .quality-read small{font-size:10px}
 .time-lanes>div{grid-template-columns:minmax(70px,110px) minmax(30px,1fr) minmax(72px,max-content)}
 .quality-read>div{grid-template-columns:minmax(120px,max-content) minmax(24px,1fr) auto}
@@ -467,6 +460,8 @@ details.archive-data>summary,details.license-fold>summary{cursor:pointer;color:v
 .preview-mobile{background-image:url(data:image/webp;base64,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)}
 .preview-self{background-image:url(data:image/webp;base64,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)}
 .preview-publisher{background-image:url(data:image/webp;base64,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)}
+[id^="staff-"] > .bt,[id^="candidate-"] > .bt{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:flex-start;gap:8px;margin:0}
+#featureList .feat-check:has(input:disabled){opacity:.7}
 </style><link rel="icon" href="data:,"></head><body>
 <header id="hd"></header><nav id="nv"></nav><main id="mn"></main><div id="windowSpace" hidden></div><div id="clockFeedback" role="status" hidden></div><aside id="marketRail" aria-label="Jeux en vente"></aside><div id="hoverTip" role="tooltip" hidden></div><div id="ts"></div><canvas id="cf"></canvas>
 <script>
@@ -499,8 +494,8 @@ const genreStars={
  MOBA:[1,3,5,2,5,4],Roguelike:[2,2,5,3,3,5],Survival:[2,4,5,3,4,4],
  Metroidvania:[3,4,5,4,2,4],'Battle Royale':[1,3,5,2,5,5]
 };
-function focusInputs(){return $$('#creativeDirection input[type=range]');}
-function focusValues(){return focusInputs().map(el=>+el.value);}
+function focusInputs(){return $$('#creativeDirection input[type=number]');}
+function focusValues(){return focusInputs().map(el=>Number(el.dataset.invested || 0));}
 function attentionFit(genre, values){
  const weights=genreStars[genre] || [3,3,3,3,3,3];
  const total=weights.reduce((a,b)=>a+b,0);
@@ -520,73 +515,74 @@ function qualityRating(i,weight){
    '<span class="quality-star-full" aria-hidden="true">'+ '★'.repeat(weight)+'</span>'+
    '<span class="quality-star-empty" aria-hidden="true">'+ '☆'.repeat(5-weight)+'</span></span>';
 }
+const ambitionRoles=['design','art','prog','art','prog','prog'];
+function ambitionScope(points){const n=sum(points);return n<60?0:n<240?1:n<750?2:n<1800?3:4;}
 function qualityEditor(){
  return '<section class="creative-direction" id="creativeDirection" aria-labelledby="creativeTitle">'+
-   '<div class="creative-heading"><h3 id="creativeTitle" tabindex="-1">Direction créative</h3>'+
-   '<div class="attention-budget"><strong id="attentionRemaining" role="status" data-form-output></strong><span id="attentionFit"></span></div></div>'+
-   '<div class="attention-stack" id="attentionStack" aria-hidden="true"></div><div class="quality-grid">'+
+   '<div class="creative-heading"><h3 id="creativeTitle" tabindex="-1">Ambitions du jeu</h3>'+
+   '<div class="attention-budget"><strong id="attentionRemaining" role="status" data-form-output></strong></div></div>'+
+   '<p class="mu">Saisis les points à développer. Le total inclut les bonus et malus des fonctionnalités.</p><div class="quality-grid">'+
    dimensions.map((name,i)=>
      '<div class="quality-line" role="group" aria-labelledby="attentionName'+i+'">'+
        '<div class="quality-line-heading">'+qualityLabel(name,i,'attentionName'+i)+''+
-       '<span class="quality-rating-slot" data-form-output></span><output for="attention'+i+'" aria-live="off"></output></div>'+
+       '<span class="quality-rating-slot" data-form-output></span></div>'+
        '<div class="quality-controls" style="--quality-color:var(--quality'+i+')">'+
          '<button type="button" class="attention-minus" aria-label="Retirer un point · '+name+'" onclick="adjustAttention('+i+', -1)">−</button>'+
-         '<input id="attention'+i+'" aria-labelledby="attentionName'+i+'" type="range" min="0" max="100" value="'+equalAttention[i]+'" oninput="adjustAttention('+i+')">'+
+         '<span class="stat-entry"><input id="attention'+i+'" aria-labelledby="attentionName'+i+'" type="number" step="1" value="0" data-form-output data-invested="0" oninput="editAttention(this,'+i+')" onblur="refreshTotal(this,'+i+');updateScWarn()"><small class="zero-note" data-form-output hidden>(reviens à 0)</small></span>'+
          '<button type="button" class="attention-plus" aria-label="Ajouter un point · '+name+'" onclick="adjustAttention('+i+', 1)">+</button>'+
        '</div>'+
-       '<div class="quality-line-limits"><span class="attention-available"></span><span class="attention-max"></span></div>'+
+       '<div class="quality-line-limits">'+ROLES[ambitionRoles[i]]+' · <strong class="trait-total" data-form-output></strong></div>'+
      '</div>'
    ).join('')+
-   '</div><div class="attention-actions"><button type="button" onclick="resetAttention()">Répartition équilibrée</button>'+
+   '</div><div class="attention-actions"><button type="button" onclick="resetAttention()">4 points par stat</button>'+
    '<button type="button" onclick="resetAttention(true)">Tout retirer</button></div></section>';
 }
 function resetAttention(clear = false){
- focusInputs().forEach((el,i)=>el.value=clear ? 0 : equalAttention[i]);
- refreshAttention($('#pg')?.value || draftSource()?.genre);
+ focusInputs().forEach(el=>el.dataset.invested=clear ? 0 : 4);
+ updateScWarn();
  captureProjectForm();
 }
-function refreshAttention(genre){
+function featureOffset(i,features){
+ return features.reduce((n,f)=>n+(f.stats[i] || 0),0);
+}
+function refreshTotal(field,i,offset=featureOffset(i,selectedTraits())){
+ field.value=Number(field.dataset.invested || 0)+offset;
+}
+function editAttention(field,i){
+ const offset=featureOffset(i,selectedTraits());
+ if(Number.isSafeInteger(field.valueAsNumber))field.dataset.invested=Math.max(0,field.valueAsNumber-offset);
+ updateScWarn();captureProjectForm();
+}
+function refreshAttention(genre,attention){
  const fields=focusInputs();
  if(!fields.length)return;
- const vals=fields.map(el=>Number(el.value));
- const assigned=vals.reduce((total,value)=>total+value,0);
- const remaining=100-assigned;
+ const vals=focusValues();
  const weights=genreStars[genre] || [3,3,3,3,3,3];
- fields.forEach((el,i)=>{
-   const line=el.closest('.quality-line');
-   const value=vals[i], limit=value+remaining;
-   const rating=line.querySelector('.quality-rating-slot');
+ fields.forEach((field,i)=>{
+   const line=field.closest('.quality-line'),rating=line.querySelector('.quality-rating-slot');
    if(rating.dataset.weight!==String(weights[i])){
-     rating.innerHTML=qualityRating(i,weights[i]);
-     rating.dataset.weight=weights[i];
+     rating.innerHTML=qualityRating(i,weights[i]);rating.dataset.weight=weights[i];
    }
-   line.querySelector('output').textContent=value+' %';
-   line.querySelector('.attention-available').textContent='+'+remaining+' % disponibles';
-   line.querySelector('.attention-max').textContent='Max. '+limit+' %';
-   line.querySelector('.attention-minus').disabled=value===0;
-   line.querySelector('.attention-plus').disabled=remaining===0;
-   el.style.setProperty('--filled',value+'%');
-   el.style.setProperty('--limit',limit+'%');
-   el.setAttribute('aria-valuetext',value+' %, maximum '+limit+' %, importance '+weights[i]+' sur 5');
-   el.setAttribute('aria-disabled',String(limit===0));
-   el.tabIndex=limit===0 ? -1 : 0;
+   line.querySelector('.attention-minus').disabled=!vals[i];
+   const offset=featureOffset(i,selectedTraits());
+   if(document.activeElement!==field)refreshTotal(field,i,offset);
+   field.min=offset;
+   line.querySelector('.zero-note').hidden=vals[i]+offset>=0;
+   line.querySelector('.trait-total').textContent='Minimum: '+Math.max(0,offset);
  });
- const fit=Math.round(attentionFit(genre,vals));
- const budgetText=remaining ? remaining+' % à répartir' : '100 % répartis';
- const budgetStatus=$('#attentionRemaining');
- if(budgetStatus.textContent!==budgetText)budgetStatus.textContent=budgetText;
- $('#attentionFit').textContent='Cohérence du genre : '+fit+' %';
- $('#attentionStack').innerHTML=vals.map((v,i)=>'<i title="'+dimensions[i]+' : '+v+' %" style="width:'+v+'%;background:var(--quality'+i+')"></i>').join('');
+ $('#attentionRemaining').textContent=nb(sum(attention))+' points au total · '+SC[ambitionScope(attention)].n;
 }
-function adjustAttention(active, delta = 0){
- const fields=focusInputs();
- const usedElsewhere=fields.reduce((total,el,i)=>total+(i===active ? 0 : Number(el.value)),0);
- const field=fields[active];
- field.value=clamp(0,100-usedElsewhere,Number(field.value)+delta);
- refreshAttention($('#pg')?.value || draftSource()?.genre);
- captureProjectForm();
+function adjustAttention(i,delta){
+ focusInputs()[i].dataset.invested=Math.max(0,focusValues()[i]+delta);
+ updateScWarn();captureProjectForm();
 }
 function qualityResult(p,base){
+ if(p.ambitionModel){
+   const weights=genreStars[p.genre] || [3,3,3,3,3,3];
+   const values=p.attention.map((v,i)=>Math.round(100*(1-Math.exp(-Math.sqrt(v)/4.5))*coverage(p,ambitionRoles[i])));
+   const weighted=sum(values.map((v,i)=>v*weights[i]))/sum(weights);
+   return {values,score:Math.round(clamp(5,98,weighted*.74+base*.26))};
+ }
  const budget=p.attention || equalAttention,weights=genreStars[p.genre] || [3,3,3,3,3,3];
  const fit=attentionFit(p.genre,budget);
  const total=weights.reduce((a,b)=>a+b,0);
@@ -603,10 +599,10 @@ function qualityResult(p,base){
  const score=clamp(5,95,base+(weighted-base)*.32+completion*(6-30*(1-fit/100)));
  return {values,score:Math.round(score),fit:Math.round(fit)};
 }
-function qualityBars(values,genre,attention,estimated=false){
+function qualityBars(values,genre,attention,estimated=false,ambition=false){
  if(!values)return '';
  const weights=genreStars[genre] || [3,3,3,3,3,3];
- return (attention?'<p class="mu">Cohérence de la direction : <strong>'+Math.round(attentionFit(genre,attention))+' %</strong></p>':'')+'<div class="quality-read">'+dimensions.map((name,i)=>'<div tabindex="0" '+qualityImportance(i,weights[i])+'><span>'+qualityLabel(name,i)+(attention?' <small class="mu">('+attention[i]+' %)</small>':'')+'</span><meter min="0" max="100" value="'+values[i]+'"></meter><strong>'+(estimated?estimatedQuality(values[i]):values[i]+'/100')+'</strong></div>').join('')+'</div>';
+ return (attention && !ambition?'<p class="mu">Cohérence de la direction : <strong>'+Math.round(attentionFit(genre,attention))+' %</strong></p>':'')+'<div class="quality-read">'+dimensions.map((name,i)=>'<div tabindex="0" '+qualityImportance(i,weights[i])+'><span>'+qualityLabel(name,i)+(attention?' <small class="mu">('+attention[i]+(ambition?' pts':' %')+')</small>':'')+'</span><meter min="0" max="100" value="'+values[i]+'"></meter><strong>'+(estimated?estimatedQuality(values[i]):values[i]+'/100')+'</strong></div>').join('')+'</div>';
 }
 function estimatedBand(value,step,format=nb) {
   const quantum=Math.max(step,Math.pow(10,Math.floor(Math.log10(Math.max(1,value)))-1));
@@ -618,9 +614,16 @@ function estimatedQuality(score) {
   return score<40?'Fragile':score<60?'Correcte':score<75?'Prometteuse':'Très prometteuse';
 }
 function scheduleView(schedule){
- if(schedule.missing.length)return '<strong>Calendrier en attente</strong><p>Postes à pourvoir · '+schedule.missing.map(r=>DIS[r]).join(', ')+'</p>';
- return '<strong>Durée prévue : '+estimatedBand(schedule.days,7)+' jours</strong><div class="time-lanes">'+CORE_ROLES.map((role,i)=>'<div><span>'+DIS[role]+'</span><i><b style="width:'+Math.min(100,100*schedule.roleDays[i]/schedule.days)+'%"></b></i><small>'+estimatedBand(schedule.roleDays[i],7)+' j</small></div>').join('')+'</div><small>Les métiers travaillent en parallèle. La durée totale inclut les tests.</small>';
+ if(!schedule.shared)return '<div class="bar"><i style="width:100%;background:#ff7048"></i></div><strong>Développement à l’arrêt</strong> <span tabindex="0" '+plainTip('Affecte au moins un employé à ce projet.')+'>⚠</span>';
+ if(!schedule.days)return '<strong>Durée à estimer</strong>';
+ const days=schedule.days, missing=schedule.missing;
+ const tier=days>730?2:days>180 || missing.length?1:0;
+ const color=['#f1d551','#ffac5b','#ff7048'][tier];
+ const detail=missing.length?missing.map(r=>ROLES[r]+' manquant pour '+dimensions.filter((_,i)=>ambitionRoles[i]===r && focusValues()[i]).join(', ').toLowerCase()).join('. ')+'. Les autres métiers avancent lentement sur cette partie.':
+   days>180?'Renforce le poste de '+ROLES[schedule.bottleneck].toLowerCase()+' ou réduis les ambitions qui lui sont confiées.':'L’effectif affecté couvre les ambitions prévues.';
+ return '<strong>Durée prévue · '+durationBand(days)+'</strong> <span tabindex="0" aria-label="'+escapeAttribute(detail)+'" '+plainTip(detail)+'>'+ (tier?'⚠':'ⓘ')+'</span><div class="bar"><i style="background:'+color+';width:'+Math.min(100,22+22*Math.log1p(days/60))+'%"></i></div><small>'+['Charge accessible','Charge élevée','Charge très élevée'][tier]+'</small>';
 }
+function durationBand(days){return days>=730?estimatedBand(days/365,1)+' ans':days>=90?estimatedBand(days/30,1)+' mois':estimatedBand(days,7)+' jours';}
 
 const projectSections = {platforms:['Plateformes de sortie',5], features:['Fonctionnalités',7], languages:['Traductions',2],
   distribution:['Distribution'], cover:['Jaquette']
@@ -644,7 +647,7 @@ function sheetEnd() {return '</div><footer><button class="go" onclick="this.clos
 function summarizePlan(p) {
   const set=(k,t)=>{const e=$('#summary-'+k);if(e)e.textContent=t;};
   set('platforms',p.platforms.join(' · ') || 'À choisir');
-  set('features',p.features.length ? p.features.length+' sélectionnée'+(p.features.length>1?'s':'') : 'Aucune sélection');
+  set('features',p.features.length+' / '+traitSlots()+' fonctionnalités');
   set('languages',p.translations.length ? (1+p.translations.length)+' langues' : 'Anglais');
   const distribution=distributionModes[p.published];
   set('distribution',distribution.label);
@@ -744,7 +747,7 @@ function inspectBox(i) {
     '<p><strong>'+r.score+'/100</strong> · '+nb(r.u)+' exemplaires</p><p>'+escapeAttribute(getLicense(r.franchiseId)?.name || r.name)+' · Épisode '+(r.installment || 1)+'</p>'+
     (memoryBonus(r)>0?'<p>La nostalgie peut aider le lancement d’une suite du même genre.</p>':'')+
     '<button aria-pressed="'+Boolean(r.collected)+'" onclick="toggleFavorite('+i+')">'+(r.collected?'Retirer des favoris':'Garder en favori')+'</button></div></div>'+
-    (r.qualities?qualityBars(r.qualities,r.genre,r.attention):'')+'<div class="bt"><button onclick="closeModal();openGameGraph('+i+')">Voir les ventes</button><button class="go" onclick="closeModal()">Fermer</button></div>',true);
+    (r.qualities?qualityBars(r.qualities,r.genre,r.attention,false,r.ambitionModel):'')+'<div class="bt"><button onclick="closeModal();openGameGraph('+i+')">Voir les ventes</button><button class="go" onclick="closeModal()">Fermer</button></div>',true);
 }
 function toggleFavorite(i){g.rel[i].collected=!g.rel[i].collected;save();$('#md')?.remove();render();inspectBox(i);}
 function studioBanner() {
@@ -809,27 +812,28 @@ var PLATFORM_GENRES = {
   Console:{Sport:1.30, Action:1.24, Horreur:1.19, RTS:.67, Gestion:.73},
   Mobile:{Puzzle:1.32, Gestion:1.25, RTS:.74, 'Film interactif':.77},
 };
-var CONSOLE_FEE = [2500, 10000, 40000, 120000];
+var CONSOLE_FEE = [2500, 10000, 40000, 120000, 250000];
 var PUB = {kit:0.8,physical:0.8, localization:0.4, distribution:1.35, share:0.5, hype:80, floor:65};
 var platFee = (pl, sc) => pl === 'Console' ? CONSOLE_FEE[sc] : (PLAT[pl] ? PLAT[pl].fee : 0);
 
 
 var SC = [
-  {n:'Micro-jeu', pts:500,    base:1750,   mk:2000,   skill:1350},
+  {n:'Micro indé', pts:500,    base:1750,   mk:2000,   skill:1350},
   {n:'Jeu indé',  pts:2400,   base:4550,   mk:8000,   skill:2600},
   {n:'Jeu AA',    pts:32000,  base:26000,  mk:60000,  skill:4600},
   {n:'Jeu AAA',   pts:245000, base:110000, mk:600000, skill:6900},
+  {n:'Jeu AAAA', pts:900000, base:240000, mk:1400000, skill:8500},
 ];
 
 var SCOPE_PRICE = {
-  PC:      [15, 25, 40, 60],
-  Console: [20, 35, 50, 60],
-  Mobile:  [3,  4,  5,  7],
+  PC:      [15, 25, 40, 60, 70],
+  Console: [20, 35, 50, 60, 75],
+  Mobile:  [3,  4,  5,  7,  9],
 };
 
 var OFF = [{n:'Garage',cap:3,rent:300,up:0},{n:'Local partagé',cap:8,rent:1800,up:15000},{n:'Plateau de bureaux',cap:25,rent:7000,up:60000},{n:'Immeuble dédié',cap:70,rent:22000,up:250000}];
-var ROLES = {prog:'Programmeur',design:'Game designer',art:'Artiste',qa:'Testeur assurance qualité'};
-var DIS = {prog:'Programmation',design:'Game design',art:'Art et son',qa:'Tests assurance qualité'};
+var ROLES = {prog:'Programmeur',design:'Scénariste',art:'Artiste'};
+var DIS = {prog:'Programmeur',design:'Scénariste',art:'Artiste',qa:'Tests assurance qualité'};
 
 var N1 = ['James','Emma','Michael','Olivia','William','Sophia','David','Isabella','Joseph','Mia','Daniel','Charlotte','Matthew','Amelia','Christopher','Harper','Andrew','Evelyn','Joshua','Abigail','Ryan','Emily','Nathan','Elizabeth','Tyler','Sofia','Jacob','Avery','Ethan','Ella','Noah','Madison','Liam','Scarlett','Logan','Victoria','Mason','Aria','Lucas','Grace'];
 var N2 = ['Smith','Johnson','Williams','Brown','Jones','Garcia','Miller','Davis','Rodriguez','Martinez','Hernandez','Lopez','Gonzalez','Wilson','Anderson','Thomas','Taylor','Moore','Jackson','Martin','Lee','Perez','Thompson','White','Harris','Sanchez','Clark','Ramirez','Lewis','Robinson','Walker','Young','Allen','King','Wright','Scott','Torres','Nguyen','Hill','Flores'];
@@ -851,7 +855,7 @@ var TECHS = [
   {id:'photogram', y:2013, n:'Photogrammétrie', c:200000, cat:'3D', icon:'<i class=illustration-art0 aria-hidden=true></i>', desc:'Reconstitue des objets et des surfaces en trois dimensions à partir de séries de photos.'},
   {id:'vr', y:2016, n:'Réalité virtuelle', c:250000, cat:'Matériel', icon:'<i class=illustration-art19 aria-hidden=true></i>', desc:'Adapte l’image et les mouvements aux casques de réalité virtuelle.'},
   {id:'4k', y:2016, n:'4K / HDR', c:300000, cat:'Graphismes', icon:'<i class=illustration-art5 aria-hidden=true></i>', desc:'Gère l’affichage en 3840 × 2160 et une plage de luminosité plus large avec le HDR.'},
-  {id:'raytrace', y:2018, n:'Ray tracing', c:400000, cat:'3D', icon:'<i class=illustration-art0 aria-hidden=true></i>', desc:'Calcule le trajet des rayons de lumière pour affiner les ombres et les reflets.'},
+  {id:'raytrace', y:2018, n:'Ray tracing (RTX)', c:400000, cat:'3D', icon:'<i class=illustration-art0 aria-hidden=true></i>', desc:'Calcule le trajet des rayons de lumière pour affiner les ombres et les reflets.'},
   {id:'cloud', y:2019, n:'Cloud gaming', c:200000, cat:'Plateforme', icon:'<i class=illustration-art10 aria-hidden=true></i>', desc:'Adapte le moteur à l’exécution sur un serveur qui transmet l’image au joueur.'},
   {id:'ai-assets', y:2023, n:'Assets générés par IA', c:350000, cat:'IA', icon:'<i class=illustration-art6 aria-hidden=true></i>', desc:'Génère des variantes de textures qui servent de base au travail des artistes.'},
   {id:'ai-npc', y:2025, n:'PNJ conversationnels', c:450000, cat:'IA', icon:'<i class=illustration-art6 aria-hidden=true></i>', desc:'Permet à certains personnages de produire des réponses qui s’adaptent à la conversation.'},
@@ -871,14 +875,14 @@ var TECHS = [
   {"id": "pbr", "y": 2014, "n": "Bibliothèque de matériaux physiques", "c": 170000, "cat": "Production artistique", "icon": "<i class=illustration-art27 aria-hidden=true></i>", "desc": "Les artistes réutilisent des surfaces qui réagissent de façon cohérente à la lumière.", "role": "art", "roleBonus": 7},
   {"id": "procedural-biome", "y": 2018, "n": "Placement procédural de végétation", "c": 220000, "cat": "Production artistique", "icon": "<i class=illustration-art27 aria-hidden=true></i>", "desc": "Les artistes règlent les essences et les densités à l’échelle du paysage.", "role": "art", "roleBonus": 8},
   {"id": "virtual-geometry", "y": 2021, "n": "Géométrie virtualisée", "c": 290000, "cat": "Production artistique", "icon": "<i class=illustration-art27 aria-hidden=true></i>", "desc": "Le moteur adapte le détail des décors à leur taille à l’écran.", "role": "art", "roleBonus": 9},
-  {"id": "tile-editor", "y": 1992, "n": "Éditeur de cartes en tuiles", "c": 11000, "cat": "Conception", "icon": "<i class=illustration-art15 aria-hidden=true></i>", "desc": "Les concepteurs dessinent leurs niveaux à partir d’une grille de motifs.", "role": "design", "roleBonus": 4},
-  {"id": "dialog-tree", "y": 1995, "n": "Éditeur de dialogues à embranchements", "c": 26000, "cat": "Conception", "icon": "<i class=illustration-art15 aria-hidden=true></i>", "desc": "Les auteurs parcourent les réponses et leurs conséquences dans une même vue.", "role": "design", "roleBonus": 5},
-  {"id": "trigger-editor", "y": 1998, "n": "Déclencheurs de niveau", "c": 42000, "cat": "Conception", "icon": "<i class=illustration-art15 aria-hidden=true></i>", "desc": "Les concepteurs relient une zone de passage à un événement de jeu.", "role": "design", "roleBonus": 5},
-  {"id": "quest-vars", "y": 2002, "n": "Éditeur de quêtes", "c": 70000, "cat": "Conception", "icon": "<i class=illustration-art15 aria-hidden=true></i>", "desc": "Les étapes et conditions de chaque mission sont réunies dans un outil commun.", "role": "design", "roleBonus": 6},
-  {"id": "behavior-tree", "y": 2006, "n": "Arbres de comportement", "c": 105000, "cat": "Conception", "icon": "<i class=illustration-art15 aria-hidden=true></i>", "desc": "Les concepteurs combinent les décisions des personnages et observent le résultat.", "role": "design", "roleBonus": 7},
-  {"id": "visual-script", "y": 2010, "n": "Scripts visuels", "c": 130000, "cat": "Conception", "icon": "<i class=illustration-art15 aria-hidden=true></i>", "desc": "Les concepteurs relient des actions entre elles et testent une règle sur place.", "role": "design", "roleBonus": 7},
-  {"id": "encounter-sim", "y": 2016, "n": "Simulateur de rencontres", "c": 165000, "cat": "Conception", "icon": "<i class=illustration-art15 aria-hidden=true></i>", "desc": "Les concepteurs confrontent leurs réglages à plusieurs styles de jeu.", "role": "design", "roleBonus": 8},
-  {"id": "world-layers", "y": 2020, "n": "Calques de mondes partagés", "c": 235000, "cat": "Conception", "icon": "<i class=illustration-art15 aria-hidden=true></i>", "desc": "Plusieurs concepteurs peuvent travailler sur différentes couches du même niveau.", "role": "design", "roleBonus": 9},
+  {"id": "tile-editor", "y": 1992, "n": "Éditeur de cartes en tuiles", "c": 11000, "cat": "Conception", "icon": "<i class=illustration-art15 aria-hidden=true></i>", "desc": "Les concepteurs dessinent leurs niveaux à partir d’une grille de motifs.", "role": "prog", "roleBonus": 4},
+  {"id": "dialog-tree", "y": 1995, "n": "Éditeur de dialogues à embranchements", "c": 26000, "cat": "Conception", "icon": "<i class=illustration-art15 aria-hidden=true></i>", "desc": "Les auteurs parcourent les réponses et leurs conséquences dans une même vue.", "role": "prog", "roleBonus": 5},
+  {"id": "trigger-editor", "y": 1998, "n": "Déclencheurs de niveau", "c": 42000, "cat": "Conception", "icon": "<i class=illustration-art15 aria-hidden=true></i>", "desc": "Les concepteurs relient une zone de passage à un événement de jeu.", "role": "prog", "roleBonus": 5},
+  {"id": "quest-vars", "y": 2002, "n": "Éditeur de quêtes", "c": 70000, "cat": "Conception", "icon": "<i class=illustration-art15 aria-hidden=true></i>", "desc": "Les étapes et conditions de chaque mission sont réunies dans un outil commun.", "role": "prog", "roleBonus": 6},
+  {"id": "behavior-tree", "y": 2006, "n": "Arbres de comportement", "c": 105000, "cat": "Conception", "icon": "<i class=illustration-art15 aria-hidden=true></i>", "desc": "Les concepteurs combinent les décisions des personnages et observent le résultat.", "role": "prog", "roleBonus": 7},
+  {"id": "visual-script", "y": 2010, "n": "Scripts visuels", "c": 130000, "cat": "Conception", "icon": "<i class=illustration-art15 aria-hidden=true></i>", "desc": "Les concepteurs relient des actions entre elles et testent une règle sur place.", "role": "prog", "roleBonus": 7},
+  {"id": "encounter-sim", "y": 2016, "n": "Simulateur de rencontres", "c": 165000, "cat": "Conception", "icon": "<i class=illustration-art15 aria-hidden=true></i>", "desc": "Les concepteurs confrontent leurs réglages à plusieurs styles de jeu.", "role": "prog", "roleBonus": 8},
+  {"id": "world-layers", "y": 2020, "n": "Calques de mondes partagés", "c": 235000, "cat": "Conception", "icon": "<i class=illustration-art15 aria-hidden=true></i>", "desc": "Plusieurs concepteurs peuvent travailler sur différentes couches du même niveau.", "role": "prog", "roleBonus": 9},
   {"id": "debug-console", "y": 1992, "n": "Console de diagnostic", "c": 8000, "cat": "Assurance qualité", "icon": "<i class=illustration-art6 aria-hidden=true></i>", "desc": "Les testeurs consultent l’état de la partie au moment d’une anomalie.", "role": "qa", "roleBonus": 4},
   {"id": "input-replay", "y": 1996, "n": "Relecture des commandes", "c": 22000, "cat": "Assurance qualité", "icon": "<i class=illustration-art6 aria-hidden=true></i>", "desc": "Une séquence de commandes enregistrée reproduit un parcours de test.", "role": "qa", "roleBonus": 5},
   {"id": "crash-dumps", "y": 1999, "n": "Captures de plantage", "c": 45000, "cat": "Assurance qualité", "icon": "<i class=illustration-art6 aria-hidden=true></i>", "desc": "Le moteur conserve une trace de l’état du jeu lorsqu’il s’arrête.", "role": "qa", "roleBonus": 5},
@@ -890,30 +894,31 @@ var TECHS = [
 ];
 
 var FEATURES = [
-  {id:'story', n:'Campagne narrative', y:1992, points:300, kind:'design', genres:'RPG|Aventure|Film interactif|Horreur', sales:0.10, score:3, desc:'Histoire scénarisée.'},
-  {id:'multi', n:'Multijoueur local', y:1992, points:260, kind:'tech', genres:'Sport|Action|Puzzle|FPS', sales:0.15, score:2, desc:'Deux joueurs sur le même écran.'},
-  {id:'sandbox', n:'Bac à sable', y:1995, points:620, kind:'design', genres:'Simulation|Gestion|Survival|Roguelike', sales:0.15, score:2, desc:'Monde libre.'},
-  {id:'online', n:'Multijoueur en ligne', y:1996, points:780, kind:'tech', genres:'FPS|RTS|Sport|MOBA|Battle Royale|Survival', sales:0.20, score:2, desc:'Joueurs connectés via internet.'},
-  {id:'mmo', n:'Monde massivement multijoueur', y:1997, points:1650, kind:'tech', genres:'RPG|Survival|Simulation', sales:0.24, score:3, desc:'Les joueurs partagent un monde persistant. Il faut développer le jeu en ligne et louer de la capacité avant la sortie.'},
-  {id:'open-world', n:'Monde ouvert', y:2001, points:1650, kind:'art', genres:'RPG|Action|Aventure|Survival', sales:0.25, score:5, desc:'Vaste monde explorable.'},
-  {id:'physique', n:'Physique réaliste', y:2004, points:540, kind:'tech', genres:'Simulation|Sport|Action', sales:0.10, score:2, desc:'Simulation physique avancée.'},
-  {id:'hd-tex', n:'Textures haute définition', y:2005, points:360, kind:'art', sales:0.05, score:1, desc:'Textures haute définition.'},
-  {id:'live', n:'Service continu', y:2014, points:900, kind:'design', genres:'MOBA|FPS|Battle Royale|Survival', sales:0.20, desc:'Mises à jour continues.'},
-  {id:'vr-feat', n:'Support réalité virtuelle', y:2016, points:620, kind:'tech', genres:'Simulation|Horreur|Aventure', sales:0.05, desc:'Compatible casques VR.'},
-  {id:'br', n:'Battle royale', y:2017, points:1080, kind:'tech', genres:'Battle Royale|FPS', sales:0.40, score:2, desc:'Mode dernier survivant.'},
-  {id:'rt-feat', n:'Ray tracing', y:2018, points:700, kind:'tech', sales:0.08, score:2, desc:'Éclairage ray tracing.'},
-  {id:'ai-npcs', n:'Personnages non-joueurs IA', y:2025, points:810, kind:'tech', genres:'RPG|Simulation|Aventure', sales:0.15, score:3, desc:'Personnages générés par IA.'},
-  {id:'tutorial', n:'Tutoriel intégré', y:1992, points:85, kind:'design', sales:0.03, score:1, desc:'Accueil des nouveaux joueurs.'},
-  {id:'mod-support', n:'Support des mods', y:2000, points:480, kind:'tech', genres:'Simulation|Gestion|RTS|RPG', sales:0.10, score:1, desc:'Ventes longue traîne accrues.'},
-  {id:'access', n:'Options d\'accessibilité', y:2005, points:220, kind:'mixed', sales:0.04, score:1, desc:'Sous-titres, daltonisme, difficulté adaptable.'},
-  {id:'ngplus', n:'New Game Plus', y:2008, points:200, kind:'design', genres:'RPG|Action|Metroidvania|Aventure', sales:0.04, score:1, desc:'Rejouabilité accrue.'},
-  {id:'anti-cheat', n:'Anti-triche', y:2010, points:420, kind:'tech', genres:'FPS|MOBA|Battle Royale|Sport', sales:0.04, score:0, desc:'Nécessite le multijoueur en ligne.'},
-  {id:'season-pass', n:'Season pass', y:2012, points:310, kind:'design', genres:'MOBA|FPS|Battle Royale', sales:0.18, score:0, desc:'Nécessite le service continu.'},
-  {id:'lootboxes', n:'Loot boxes', y:2014, points:230, kind:'tech', sales:0.20, score:-2, desc:'Revenus en plus, réputation entamée.'},
-  {id:'crossplay', n:'Jeu multiplateforme', y:2015, points:880, kind:'tech', genres:'FPS|Sport|MOBA|Battle Royale', sales:0.15, score:1, desc:'Nécessite plusieurs plateformes et le multijoueur en ligne.'},
-  {id:'photo-mode', n:'Mode photo', y:2015, points:150, kind:'art', sales:0.04, score:1, desc:'Petit bonus de hype.'},
-  {id:'speedrun', n:'Mode speedrun', y:2015, points:130, kind:'tech', genres:'Action|Puzzle|Metroidvania', sales:0.05, score:1, desc:'Attire la scène speedrun.'},
-  {id:'antipiracy', n:'DRM anti-piratage', y:2005, points:230, kind:'tech', sales:-0.05, score:-1, desc:'Réduit le piratage.'},
+  {id:'ost',cost:0,stats:{3:6,5:-2},n:'Bande originale',y:1992,points:0,kind:'art',sales:0,score:0,desc:'Des morceaux composés pour le jeu.'},
+  {id:'story', cost:0, stats:{0:8,2:-4}, n:'Campagne narrative', y:1992, points:300, kind:'design', genres:'RPG|Aventure|Film interactif|Horreur', sales:0.10, score:3, desc:'Histoire scénarisée.'},
+  {id:'multi', cost:3, stats:{2:6,4:2}, n:'Multijoueur local', y:1992, points:260, kind:'tech', genres:'Sport|Action|Puzzle|FPS', sales:0.15, score:2, desc:'Deux joueurs sur le même écran.'},
+  {id:'sandbox', cost:5, stats:{5:10,0:-2}, n:'Bac à sable', y:1995, points:620, kind:'design', genres:'Simulation|Gestion|Survival|Roguelike', sales:0.15, score:2, desc:'Monde libre.'},
+  {id:'online', cost:6, stats:{2:6,4:6}, n:'Multijoueur en ligne', y:1996, points:780, kind:'tech', genres:'FPS|RTS|Sport|MOBA|Battle Royale|Survival', sales:0.20, score:2, desc:'Joueurs connectés via internet.'},
+  {id:'mmo', cost:14, stats:{5:20,4:8}, n:'Monde massivement multijoueur', y:1997, points:1650, kind:'tech', genres:'RPG|Survival|Simulation', sales:0.24, score:3, desc:'Les joueurs partagent un monde persistant. Il faut développer le jeu en ligne et louer de la capacité avant la sortie.'},
+  {id:'open-world', cost:12, stats:{5:18,1:6,0:-3}, n:'Monde ouvert', y:2001, points:1650, kind:'art', genres:'RPG|Action|Aventure|Survival', sales:0.25, score:5, desc:'Vaste monde explorable.'},
+  {id:'physique', cost:6, stats:{4:9,2:4}, n:'Physique réaliste', y:2004, points:540, kind:'tech', genres:'Simulation|Sport|Action', sales:0.10, score:2, desc:'Simulation physique avancée.'},
+  {id:'hd-tex', cost:4, stats:{1:9}, n:'Textures haute définition', y:2005, points:360, kind:'art', sales:0.05, score:1, desc:'Textures haute définition.'},
+  {id:'live', cost:7, stats:{5:12,0:-2}, n:'Service continu', y:2014, points:900, kind:'design', genres:'MOBA|FPS|Battle Royale|Survival', sales:0.20, desc:'Mises à jour continues.'},
+  {id:'vr-feat', cost:8, stats:{2:8,4:8}, n:'Support réalité virtuelle', y:2016, points:620, kind:'tech', genres:'Simulation|Horreur|Aventure', sales:0.05, desc:'Compatible casques VR.'},
+  {id:'br', cost:8, stats:{2:14,0:-5}, n:'Battle royale', y:2017, points:1080, kind:'tech', genres:'Battle Royale|FPS', sales:0.40, score:2, desc:'Mode dernier survivant.'},
+  {id:'rt-feat', cost:10, stats:{1:20}, n:'Ray tracing (RTX)', y:2018, points:700, kind:'tech', sales:0.08, score:2, desc:'Éclairage ray tracing.'},
+  {id:'ai-npcs', cost:9, stats:{0:6,4:12}, n:'Personnages non-joueurs IA', y:2025, points:810, kind:'tech', genres:'RPG|Simulation|Aventure', sales:0.15, score:3, desc:'Personnages générés par IA.'},
+  {id:'tutorial', cost:0, stats:{2:4,5:-1}, n:'Tutoriel intégré', y:1992, points:85, kind:'design', sales:0.03, score:1, desc:'Accueil des nouveaux joueurs.'},
+  {id:'mod-support', cost:5, stats:{5:12}, n:'Support des mods', y:2000, points:480, kind:'tech', genres:'Simulation|Gestion|RTS|RPG', sales:0.10, score:1, desc:'Ventes longue traîne accrues.'},
+  {id:'access', cost:3, stats:{2:5,4:3}, n:'Options d\'accessibilité', y:2005, points:220, kind:'mixed', sales:0.04, score:1, desc:'Sous-titres, daltonisme, difficulté adaptable.'},
+  {id:'ngplus', cost:3, stats:{5:8}, n:'New Game Plus', y:2008, points:200, kind:'design', genres:'RPG|Action|Metroidvania|Aventure', sales:0.04, score:1, desc:'Rejouabilité accrue.'},
+  {id:'anti-cheat', cost:4, stats:{4:10}, n:'Anti-triche', y:2010, points:420, kind:'tech', genres:'FPS|MOBA|Battle Royale|Sport', sales:0.04, score:0, desc:'Nécessite le multijoueur en ligne.'},
+  {id:'season-pass', cost:4, stats:{5:9}, n:'Season pass', y:2012, points:310, kind:'design', genres:'MOBA|FPS|Battle Royale', sales:0.18, score:0, desc:'Nécessite le service continu.'},
+  {id:'lootboxes', cost:0, stats:{5:5,2:-3}, n:'Loot boxes', y:2014, points:230, kind:'tech', sales:0.20, score:-2, desc:'Revenus en plus, réputation entamée.'},
+  {id:'crossplay', cost:8, stats:{4:12,2:4}, n:'Jeu multiplateforme', y:2015, points:880, kind:'tech', genres:'FPS|Sport|MOBA|Battle Royale', sales:0.15, score:1, desc:'Nécessite plusieurs plateformes et le multijoueur en ligne.'},
+  {id:'photo-mode', cost:3, stats:{1:7}, n:'Mode photo', y:2015, points:150, kind:'art', sales:0.04, score:1, desc:'Petit bonus de hype.'},
+  {id:'speedrun', cost:0, stats:{2:5,0:-2}, n:'Mode speedrun', y:2015, points:130, kind:'tech', genres:'Action|Puzzle|Metroidvania', sales:0.05, score:1, desc:'Attire la scène speedrun.'},
+  {id:'antipiracy', cost:2, stats:{4:6,2:-2}, n:'DRM anti-piratage', y:2005, points:230, kind:'tech', sales:-0.05, score:-1, desc:'Réduit le piratage.'},
 ];
 
 var STOCK_ENGINES = [
@@ -1078,7 +1083,7 @@ var currentYear = () => dt().getFullYear();
 var getEra = () => { var y = currentYear(); return y < 2000 ? 'early' : y < 2010 ? 'mid' : y < 2020 ? 'late' : 'modern'; };
 function yearPointsScale(scope = 0,year=currentYear()) {
   var years = clamp(0,50,year-START_YEAR);
-  return 1+years*(.03+.011*scope)+years*years*[.00025,.0013,.003,.006][scope];
+  return 1+years*(.03+.011*scope)+years*years*[.00025,.0013,.003,.006,.008][scope];
 }
 var yearRevenueMult = () => 1 + Math.min(34, Math.max(0, currentYear() - START_YEAR)) * 0.017;
 
@@ -1099,7 +1104,7 @@ var burn = () => ((g && Array.isArray(g.staff)) ? g.staff.reduce((a,s) => a + (s
 var teamBurn = team => ((g && Array.isArray(g.staff)) ? g.staff.filter(s => s.teamId === team.id).reduce((a, s) => a + (s.brut||0) * 1.42, 0) : 0);
 
 function translationCost(lang, sc) {
-  var baseByScope = [800, 2500, 9000, 25000];
+  var baseByScope = [800, 2500, 9000, 25000, 50000];
   var yearFactor = 1 + Math.max(0, currentYear() - 1992) * 0.03;
   return Math.round(baseByScope[sc] * lang.costMult * yearFactor * (1-companyBonus('localization')) / 50) * 50;
 }
@@ -1111,9 +1116,9 @@ function translationShareRatio(langs) {
 }
 
 function updatePub() {
-  var box = $('#pubBox'), cb = $('#ppub'), ps = $('#ps');
-  if (!box || !cb || !ps) return;
-  var sc = +ps.value;
+  var box = $('#pubBox'), cb = $('#ppub');
+  if (!box || !cb) return;
+  var sc = ambitionScope(traitAmbitions(focusValues(),selectedTraits()));
   if (sc < 1) { cb.checked = false; cb.disabled = true; box.textContent = 'Les éditeurs n’acceptent pas les micro-jeux.'; return; }
   cb.disabled = false;
   box.textContent = 'L’éditeur couvre ' + Math.round(PUB.kit*100) + ' % des kits et ' + Math.round(PUB.localization*100) +
@@ -1145,7 +1150,7 @@ function updateProjectPrice() {
   if (!output) return;
   var platforms = $$('#platChecks input:checked').map(el => el.value);
   output.textContent = platforms.length
-    ? gamePriceText({sc: +$('#ps').value, platforms: platforms, f2p: Boolean($('#pf2p')?.checked)})
+    ? gamePriceText({sc: ambitionScope(traitAmbitions(focusValues(),selectedTraits())), platforms: platforms, f2p: Boolean($('#pf2p')?.checked)})
     : 'Sélectionnez une plateforme.';
 }
 function mobileUnitMult(p) {
@@ -1300,9 +1305,9 @@ var FEATURE_SPLIT = {
 var clamp = (min, max, value) => Math.max(min, Math.min(max, value));
 var sum = o => Object.values(o).reduce((a,b)=>a+b,0);
 var prog = p => Object.keys(p.need).reduce((total, role) => total + Math.min(p.done[role], p.need[role]), 0) / sum(p.need);
-var coverage = (p,r) => clamp(0, 1, p.done[r] / p.need[r]);
-var coreDone = p => CORE_ROLES.every(role => coverage(p, role) >= 0.9999);
-var bugPct = p => clamp(0, 100, 100 * p.bugs / (0.16 * p.need.prog));
+var coverage = (p,r) => (p.need[r] ? clamp(0, 1, p.done[r] / p.need[r]) : 1);
+var coreDone = p => CORE_ROLES.every(role => coverage(p, role) >= (p.ambitionModel?1:0.9999));
+var bugPct = p => clamp(0, 100, 100 * p.bugs / Math.max(1,0.16 * p.need.prog));
 var canRelease = p => coreDone(p) && coverage(p,'qa') >= .45;
 var marketLifetime = game => game.isHit ? Math.round(1900+clamp(0,15,game.score-80)*43) : MARKET_DAYS;
 var isOnSale = game => !game.withdrawn && g.day>=game.day &&
@@ -1335,6 +1340,7 @@ function featureFit(feature, genre) {
 }
 
 function featureSalesMult(p) {
+  if(p.traitModel)return 1;
   var benefit = (p.features || []).reduce(function(total, id) {
     var feature = FEATURES.find(f => f.id === id);
     return feature ? total + feature.sales * featureFit(feature, p.genre) : total;
@@ -1409,7 +1415,7 @@ function engineSummary(engine) {
 function productionScore(p) {
   var completion = CORE_ROLES.reduce((total, role) => total + coverage(p,role), 0) / CORE_ROLES.length;
   var qa = coverage(p,'qa');
-  var featureQuality = (p.features || []).reduce(function(total, id) {
+  var featureQuality = p.traitModel ? 0 : (p.features || []).reduce(function(total, id) {
     var feature = FEATURES.find(f => f.id === id);
     return feature ? total + (feature.score || 0) * featureFit(feature, p.genre) : total;
   }, 0);
@@ -1436,12 +1442,13 @@ function workRate(staff, team) {
     (1 + .08*(g.eq.pc||0)) * (1+companyBonus('production')) * (1+specialization);
 }
 
-function projectDailyCost(team, daysInMonth = 30.4) {
+function projectDailyCost(team, daysInMonth = 30.4, helpers = team.proj?.helpers || []) {
   var activeTeams = g.teams.filter(candidate => candidate.proj || candidate === team).length;
-  return (teamBurn(team) + OFF[g.off].rent / activeTeams) / daysInMonth;
+  return (teamBurn(team) + g.teams.filter(t=>helpers.includes(t.id)).reduce((n,t)=>n+teamBurn(t),0) + OFF[g.off].rent / activeTeams) / daysInMonth;
 }
 
 function developProject(team, p) {
+  if(p.ambitionModel)return advanceAmbitions(team,p);
   const previousXP=developmentXP(p);
   var staff = g.staff.filter(s => s.teamId === team.id);
   var engine = getEngine(p.engineId);
@@ -1478,7 +1485,7 @@ function developProject(team, p) {
   p.polish = Math.min(p.polish,polishTarget(p));
   p.done.qa = Math.min(p.need.qa, p.done.qa + qaEffort);
   p.bugs = Math.max(0, p.bugs + extraBugs - qaEffort * .28);
-  g.company.earned+=Math.max(0,developmentXP(p)-previousXP);
+  creditDevelopment(p,previousXP);
 }
 
 function getEngine(id) {
@@ -1636,7 +1643,7 @@ function tick() {
   for (var sj = 0; sj < g.staff.length; sj++) {
     var s2 = g.staff[sj];
     var team2 = g.teams.find(t => t.id === s2.teamId);
-    if (!team2 || !team2.proj) s2.morale = Math.min(80, s2.morale + .3);
+    if (!team2 || availableTeam(team2)) s2.morale = Math.min(80, s2.morale + .3);
   }
   for (var sk = g.staff.length - 1; sk >= 0; sk--) {
     if (g.staff[sk].morale < 10 && Math.random() < .02) {
@@ -2124,8 +2131,8 @@ function captureProjectForm() {
   if (!renderedDraftKey || !$('#newProject')) return;
   var state = g.projectForms[renderedDraftKey] ||= {};
   $$('#newProject input,#newProject select').forEach(field=>{
-    if (field.disabled) return;
-    state[draftFieldKey(field)] = field.type==='checkbox' ? field.checked : field.value;
+    if (field.disabled && !field.closest('#featureList')) return;
+    state[draftFieldKey(field)] = field.type==='checkbox' ? field.checked : field.hasAttribute('data-invested') ? field.dataset.invested : field.value;
   });
 }
 
@@ -2134,8 +2141,9 @@ function restoreProjectForm(key) {
   if (!state) return;
   $$('#newProject input,#newProject select').forEach(field=>{
     var value = state[draftFieldKey(field)];
-    if (value===undefined || field.disabled) return;
-    if (field.type==='checkbox') field.checked = Boolean(value);
+    if (value===undefined || (field.disabled && !field.closest('#featureList'))) return;
+    if(field.hasAttribute('data-invested'))field.dataset.invested=Math.max(0,Number(value)||0);
+    else if (field.type==='checkbox') field.checked = Boolean(value);
     else if (field.tagName!=='SELECT' || Array.from(field.options).some(option=>option.value===value)) field.value = value;
   });
 }
@@ -2151,22 +2159,40 @@ function draftSource() {
   return projectDraft ? g.rel.find(game => game.id === projectDraft.gameId) : null;
 }
 
+function selectedTraits(){
+  return $$('#featureList input:checked').map(el=>FEATURES.find(f=>f.id===el.value));
+}
+function traitAmbitions(invested,traits){
+  return invested.map((v,i)=>Math.max(0,v+featureOffset(i,traits)));
+}
+function traitSlots(){
+  const ids=[curTeam().id,...selectedHelpers()];
+  return g.staff.filter(m=>ids.includes(m.teamId)).length;
+}
+function traitCost(traits){return traits.reduce((n,t)=>n+t.cost,0);}
+function traitIssue(traits){
+  if(traitCost(traits)>companyAvailable())return 'Points de développement insuffisants pour ces fonctionnalités.';
+  return '';
+}
+function traitDescription(t){
+  return Object.entries(t.stats).map(([i,v])=>(v>0?'+':'−')+Math.abs(v)+' '+dimensions[i].toLowerCase()).join(' · ')+' · '+(t.cost?t.cost+' pts':'Gratuit');
+}
 function projectChoices() {
   var source = draftSource();
   var dlc = projectDraft?.kind === 'dlc' && source;
-  var featureOptions = $$('#featureList input:checked').map(el => FEATURES.find(feature => feature.id === el.value));
+  var featureOptions=selectedTraits(),invested=focusValues(),attention=traitAmbitions(invested,featureOptions),sc=ambitionScope(attention);
   if (dlc) {
-    return {sc:source.sc, genre:source.genre, platforms:source.platforms, features:featureOptions,
+    return {invested,attention,sc, genre:source.genre, platforms:source.platforms, features:featureOptions,
       translations:source.translations, f2p:false, published:false,
       dlcBaseId:source.id, dlcProfile:$('#dlcSize').value};
   }
   return {
-    sc: +$('#ps').value,
+    invested,attention,sc,
     genre: $('#pg').value,
     platforms: $$('#platChecks input:checked').map(el => el.value),
     features: featureOptions,
     translations: $$('#transList input:checked').map(el => el.value),
-    published: $('#ppub').checked && +$('#ps').value > 0,
+    published: $('#ppub').checked && sc > 0,
     f2p: Boolean($('#pf2p')?.checked),
     monetization: $('#storeMode')?.value || 'none',
     storePressure: Number($('#storePressure')?.value || 1),
@@ -2183,7 +2209,7 @@ function platformIssue(platforms) {
 
 function projectUpfront(p) {
   if (p.dlcBaseId !== undefined) {
-    var setup = [350,950,3500,12500][p.sc] * DLC_PROFILES[p.dlcProfile].setup * yearPointsScale();
+    var setup = [350,950,3500,12500,25000][p.sc] * DLC_PROFILES[p.dlcProfile].setup * yearPointsScale();
     return {kits:0,translations:0,setup:Math.round(setup/50)*50};
   }
   var kits = p.platforms.reduce((total, pl) => total + platFee(pl,p.sc), 0);
@@ -2198,42 +2224,63 @@ function projectUpfront(p) {
 }
 
 function dlcPrice(sc, profile) {
-  return Math.round([6,10,15,22][sc]*DLC_PROFILES[profile].price);
+  return Math.round([6,10,15,22,30][sc]*DLC_PROFILES[profile].price);
 }
 
 function projectWork(choices) {
-  var workload = plannedWork(choices.sc,choices.genre,choices.platforms,choices.features);
-  if (choices.dlcBaseId === undefined) return workload;
-  var scale = DLC_PROFILES[choices.dlcProfile].effort;
-  return Object.fromEntries(Object.entries(workload).map(([role,points]) => [role,points*scale]));
+  const points=choices.invested;
+  const work={prog:0,design:0,art:0,qa:0};
+  const scale=yearPointsScale(ambitionScope(points))*(1+.2*Math.max(0,choices.platforms.length-1))*
+    (choices.dlcBaseId===undefined?1:DLC_PROFILES[choices.dlcProfile].effort);
+  points.forEach((v,i)=>work[ambitionRoles[i]]+=scale*(8*v+1.4*v**1.65));
+  // A traits-only title still needs a short integration pass.
+  if(!sum(work) && sum(choices.attention))work.prog=4;
+  const penalty=2**Math.max(0,choices.features.length-traitSlots());
+  for(const role of CORE_ROLES)work[role]*=penalty;
+  return work;
 }
-
-function projectSchedule(team, work, engine) {
-  var staff = g.staff.filter(member => member.teamId === team.id);
-  var rates = {prog:0, design:0, art:0, qa:0};
-  var efficiency = coordination(staff.length)*engineWorkMultiplier(engine);
-  var specialties = engineSpecialties(engine);
-  for (var member of staff) rates[member.role] += workRate(member,team) * efficiency * (1+specialties[member.role]/100);
-  var missing = CORE_ROLES.filter(role => !rates[role]);
-  if (missing.length) return {missing:missing};
-  var focus = PRIORITIES.balanced;
-  var firstTests = .5 * work.prog / rates.prog;
-  var coreSchedule = CORE_ROLES.map(function(role) {
-    var roleDays = work[role] / rates[role];
-    return roleDays <= firstTests ? roleDays : firstTests + (roleDays-firstTests) / (1-focus.test);
-  });
-  var coreDays = Math.max(...coreSchedule);
-  var shared = CORE_ROLES.reduce((total,role) => total + rates[role],0);
-  const qaBonus=1+companyBonus('qa');
-  var earlyTests = (coreDays * rates.qa * 1.32 + Math.max(0,coreDays-firstTests) * shared * focus.test * .9)*qaBonus;
-  var extraDays = Math.max(0,work.qa-earlyTests)/((rates.qa*1.32 + shared*focus.finished*.9)*qaBonus);
-  return {days:Math.ceil(coreDays + extraDays), roleDays:coreSchedule, missing:missing,
-    bottleneck:extraDays > 4 ? 'qa' : CORE_ROLES[coreSchedule.indexOf(coreDays)]};
+function supportingLead(team){return g.teams.find(t=>t.proj?.helpers?.includes(team.id));}
+function availableTeam(t){return !t.proj && !supportingLead(t);}
+function selectedHelpers(){return $$('#supportTeams input:checked').map(el=>+el.value);}
+function projectSchedule(team,work,engine,helpers=[],priority='balanced'){
+  const staff=g.staff.filter(m=>m.teamId===team.id || helpers.includes(m.teamId));
+  const rates={prog:0,design:0,art:0},skills={prog:0,design:0,art:0};
+  const specialties=engineSpecialties(engine);
+  for(const member of staff){
+    const rate=workRate(member,team)*engineWorkMultiplier(engine)*coordination(staff.length)*(1+specialties[member.role]/100);
+    rates[member.role]+=rate;skills[member.role]+=rate*member.skill;
+  }
+  const shared=sum(rates),missing=CORE_ROLES.filter(r=>work[r]>0 && !rates[r]);
+  const times=CORE_ROLES.map(r=>work[r]?work[r]/(rates[r] || shared*.035):0);
+  const bottleneck=CORE_ROLES[times.indexOf(Math.max(...times))];
+  const days=(.8*Math.max(...times)+.2*sum(times))*(1+PRIORITIES[priority].test/(1+specialties.qa/100));
+  return {days,missing,bottleneck,staff,skills,rates,shared};
+}
+function advanceAmbitions(team,p){
+ const plan=projectSchedule(team,p.need,getEngine(p.engineId),p.helpers,p.priority);
+ if(!plan.shared)return;
+ const xp=developmentXP(p),step=1/plan.days,focus=PRIORITIES[p.priority];
+ if(coreDone(p)){
+   p.polish=Math.min(polishTarget(p),p.polish+plan.shared);
+   p.bugs=Math.max(0,p.bugs-plan.shared*.14);
+ }else{
+   for(const role of CORE_ROLES){
+     const n=Math.min(p.need[role]-p.done[role],p.need[role]*step);
+     p.done[role]=Math.min(p.need[role],p.done[role]+n);
+     p.craft[role]+=n*(plan.rates[role]?plan.skills[role]/plan.rates[role]:250);
+     if(role==='prog')p.bugs+=n*.018*focus.bug*(team.crunch?1.38:1)/(1+companyBonus('qa'));
+   }
+ }
+ for(const m of plan.staff){
+   m.skill=Math.min(9999,m.skill+(m.skill<2000?.7:m.skill<4500?.3:.1));
+   m.morale=clamp(0,100,m.morale+(team.crunch?-.65*(1-companyBonus('morale')):.1+.1*g.eq.rest+companyBonus('morale')));
+ }
+ creditDevelopment(p,xp);
 }
 
 function onlineSupport(sc, featureIds) {
   if (!featureIds.includes('online') && !featureIds.includes('live')) return 0;
-  return [160,650,4250,23000][sc] * (featureIds.includes('live') ? 2 : 1);
+  return [160,650,4250,23000,55000][sc] * (featureIds.includes('live') ? 2 : 1);
 }
 
 function updateScWarn() {
@@ -2242,8 +2289,11 @@ function updateScWarn() {
   var p = projectChoices();
   var upfront = projectUpfront(p);
   var dlc = p.dlcBaseId !== undefined;
-  summarizePlan(p);refreshAttention(p.genre);previewCover(p);
+  summarizePlan(p);refreshAttention(p.genre,p.attention);previewCover(p);
   var issue = dlc ? '' : platformIssue(p.platforms);
+  issue ||= traitIssue(p.features);
+  if(!issue && !sum(p.attention))issue='Ajoute au moins un point d’ambition.';
+  if(focusInputs().some(el=>!el.validity.valid || !Number.isSafeInteger(+el.value)))issue='Saisis un nombre entier positif ou nul pour chaque statistique.';
   $('#platformWarning').textContent = issue;
   $('#startDev').disabled = Boolean(issue);
   if (dlc) $('#projectPrice').textContent = fmt(dlcPrice(p.sc,p.dlcProfile));
@@ -2257,25 +2307,30 @@ function updateScWarn() {
     if (pressure) pressure.disabled = p.monetization==='none';
   }
   $$('#newProject .project-choice > select').forEach(syncProjectChoice);
-  var platforms = Math.max(1, p.platforms.length);
-  $$('#featureList input').forEach(function(input) {
-    var feature = FEATURES.find(f => f.id === input.value);
-    input.closest('label').querySelector('small').textContent =
-      estimatedBand(featurePoints(feature,p.sc,platforms) * (dlc ? DLC_PROFILES[p.dlcProfile].effort : 1),5) + ' pts' +
-      (feature.genres ? ' · ' + (featureFit(feature,p.genre) > 1 ? 'adaptée au genre' : 'peu adaptée au genre') : '');
-  });
+  const slots=traitSlots(),traitPrice=traitCost(p.features),balance=companyAvailable();
+  $('#traitBudget').textContent=p.features.length+' / '+slots+' fonctionnalités · '+traitPrice+' pts au lancement · '+nb(balance)+' pts disponibles';
+  const extra=p.features.length-slots;
+  for(const warning of $$('.feature-warning')){
+    warning.hidden=extra<=0;
+    warning.textContent=extra>0 ? 'Équipe surchargée · '+extra+' fonctionnalité'+(extra>1?'s':'')+' en trop. Chaque fonctionnalité au-delà de l’effectif double la durée de développement prévue.' : '';
+  }
+  for(const input of $$('#featureList input')){
+    const trait=FEATURES.find(f=>f.id===input.value);
+    input.disabled=!input.checked && trait.cost+traitPrice>balance;
+  }
+  if (!sum(p.attention)) {el.textContent='';$('#schedulePreview').textContent='Ajoute des points pour estimer la durée.';return;}
   if (!p.platforms.length) { el.textContent = ''; $('#schedulePreview').textContent='Choisis une plateforme pour estimer la durée.';return; }
   var work = projectWork(p);
   var team = curTeam();
-  var schedule = projectSchedule(team,work,getEngine($('#engsel')?.value || draftSource()?.engineId));
+  var schedule = projectSchedule(team,work,getEngine($('#engsel')?.value || draftSource()?.engineId),selectedHelpers());
   $('#schedulePreview').innerHTML=scheduleView(schedule);
   var points = 'Charge prévue : '+estimatedBand(sum(work),50)+' points.';
-  if (schedule.missing.length) {
+  if (!schedule.shared) {
     el.className = 'warn-box wa';
     el.textContent = points + ' Recrutement nécessaire : ' + schedule.missing.map(role => ROLES[role]).join(', ') + '.';
     return;
   }
-  var cost = sum(upfront) + schedule.days * projectDailyCost(team);
+  var cost = sum(upfront) + schedule.days * projectDailyCost(team,30.4,selectedHelpers());
   var featureIds = p.features.map(feature => feature.id);
   var support = dlc || p.hosted || featureIds.includes('mmo') ? 0 : onlineSupport(p.sc,featureIds);
   var releaseReserve = g.cash - sum(upfront) - schedule.days * burn() / 30.4;
@@ -2361,7 +2416,7 @@ function dlcIssue(game) {
 function openFollowUp(index, kind) {
   var game = g.rel[index];
   if (g.over || !game) return;
-  if (curProj()) return toast('Libérez l’équipe sélectionnée avant de lancer un nouveau projet.', 'wa');
+  if (!availableTeam(curTeam())) return toast('Libérez l’équipe sélectionnée avant de lancer un nouveau projet.', 'wa');
   var issue = kind==='dlc' ? dlcIssue(game) : sequelIssue(game);
   if (issue) return toast(issue,'wa');
   captureProjectForm();
@@ -2381,15 +2436,17 @@ function closeDraft() {
 
 function startProj() {
   var team = curTeam();
-  if (g.over || team.proj) return toast('Cette équipe ne peut pas démarrer un autre projet.', 'ko');
+  if (g.over || !availableTeam(team)) return toast('Cette équipe ne peut pas démarrer un autre projet.', 'ko');
   var choices = projectChoices();
   var dlc = choices.dlcBaseId !== undefined;
   var source = dlc ? draftSource() : lastLicenseGame(choices.licenseId);
   var issue = dlc ? dlcIssue(source) : platformIssue(choices.platforms);
   if (!issue && choices.licenseId) issue = sequelIssue(source);
   if (issue) return toast(issue,'ko');
-  var attention = focusValues();
-  if (attention.reduce((total,value)=>total+value,0)!==100) {
+  var attention = choices.attention;
+  const problem=traitIssue(choices.features);
+  if(problem)return toast(problem,'ko');
+  if (!sum(attention) || focusInputs().some(el=>!el.validity.valid || !Number.isSafeInteger(+el.value))) {
     $('#creativeTitle').focus();
     return;
   }
@@ -2435,6 +2492,7 @@ function startProj() {
   if (pub) initHype = Math.max(initHype, PUB.hype);
 
   var isOwn = g.engines.some(e => e.id === engineId);
+  g.company.spent+=traitCost(choices.features);
   spend(upfront.kits, 'Kits de développement (' + plats.join(', ') + ') de « ' + n + ' »');
   spend(upfront.translations, 'Traductions de « ' + n + ' »');
   if (dlc) {
@@ -2442,7 +2500,7 @@ function startProj() {
     trackGameFinance(source,'cost',upfront.setup);
   }
   team.proj = {
-    attention:attention,plannedDays:projectSchedule(team,projectWork(choices),engine).days || null,name:n, cover:dlc ? source.cover : readCover(), genre:gn, plat:plats[0], platforms:plats, sc:sc, need:projectWork(choices),
+    traitModel:true,ambitionModel:true,helpers:selectedHelpers(),attention:attention,plannedDays:projectSchedule(team,projectWork(choices),engine,selectedHelpers()).days || null,name:n, cover:dlc ? source.cover : readCover(), genre:gn, plat:plats[0], platforms:plats, sc:sc, need:projectWork(choices),
     done:{prog:0,design:0,art:0,qa:0}, craft:{prog:0,design:0,art:0}, priority:'balanced', polish:0,
     bugs:0, hype:dlc ? Math.min(35,gameHype(source)/2) : initHype, spent:sum(upfront),
     features:features, engineId:engineId, engineRoyalty:isOwn ? 0 : (engine.royalty || 0),
@@ -2592,7 +2650,7 @@ function organicCatalogEvents(game) {
 function release(team = curTeam()) {
   var p = team.proj;
   if (!p || g.over) return;
-  if (!canRelease(p)) return toast('Terminez la production et au moins 45 % des tests.', 'wa');
+  if (!canRelease(p)) return toast('Le développement doit être terminé avant la publication.', 'wa');
   if (p.hosted && serverCapacity()<=0) return toast('Loue un serveur dans l’onglet Serveurs avant la sortie.','ko');
   var score = projectedScore(p);
   if (p.dlcBaseId !== undefined) return publishAddon(team,p,score);
@@ -2634,10 +2692,10 @@ function release(team = curTeam()) {
     hosted:Boolean(p.hosted), mmo:Boolean(p.mmo), monetization:p.monetization || 'none', storePressure:p.storePressure || 0,
     features:p.features, engineId:p.engineId, sequelOf:p.sequelOf, installment:p.installment || 1,
     isHit: isHit, f2p:p.f2p, freePlatforms:p.freePlatforms, pub:!!p.pub,
-    developmentPoints:developmentXP(p), startDay: p.startDay, devDays: g.day - (p.startDay ?? g.day),
+    developmentPoints:p.earnedDevelopment ?? developmentXP(p), startDay: p.startDay, devDays: g.day - (p.startDay ?? g.day),
     translations: p.translations || [],
   };
-  if(p.attention){record.qualities=qualityResult(p,productionScore(p)).values;record.attention=p.attention.slice();}
+  if(p.attention){record.qualities=qualityResult(p,productionScore(p)).values;record.attention=p.attention.slice();record.ambitionModel=p.ambitionModel;}
   record.receiptStart=g.day;
   record.franchiseId = p.franchiseId || createLicense(p.name).id;
   organicLaunchEvents(record,p);
@@ -2687,8 +2745,8 @@ function publishAddon(team, project, score) {
   var audience = profile.audience * Math.pow(.88,Math.min(game.dlcs || 0,6));
   var attach = clamp(.04,.58,audience * Math.pow(score/65,1.7) * (.91 + project.hype/320));
   (game.addons ||= []).push({
-    attention:project.attention?.slice(),qualities:project.attention?qualityResult(project,productionScore(project)).values:null,name:project.name, day:g.day, score:score, price:dlcPrice(project.sc,project.dlcProfile),
-    cost:project.spent, developmentPoints:developmentXP(project), u:0, rev:0, attach:attach, remainder:0,
+    ambitionModel:project.ambitionModel,attention:project.attention?.slice(),qualities:project.attention?qualityResult(project,productionScore(project)).values:null,name:project.name, day:g.day, score:score, price:dlcPrice(project.sc,project.dlcProfile),
+    cost:project.spent, developmentPoints:project.earnedDevelopment ?? developmentXP(project), u:0, rev:0, attach:attach, remainder:0,
   });
   game.dlcs = (game.dlcs || 0)+1;
   game.lastDlcDay = g.day;
@@ -2866,7 +2924,7 @@ function updateIssue(game) {
 }
 
 function updateCost(game) {
-  return [650,1850,10500,81000][game.sc]+Math.round((game.live?.players || 0)*.14);
+  return [650,1850,10500,81000,180000][game.sc]+Math.round((game.live?.players || 0)*.14);
 }
 
 function patch(i) {
@@ -3252,7 +3310,7 @@ var ACHIEVEMENTS = [
   {id:'rev10m', n:'Décamillionnaire', desc:'10 000 000 $ de revenus cumulés', icon:'<i class=illustration-art8 aria-hidden=true></i>', check:function(){ return g.totalRevenue >= 10000000; }},
   {id:'rev100m', n:'Magnat', desc:'100 000 000 $ de revenus cumulés', icon:'<i class=illustration-art8 aria-hidden=true></i>', check:function(){ return g.totalRevenue >= 100000000; }},
   {id:'avg70', n:'Qualité constante', desc:'Note moyenne de 70 sur au moins 5 jeux', icon:'<i class=illustration-art2 aria-hidden=true></i>', check:function(){ return g.rel.length >= 5 && g.rel.reduce(function(a,r){ return a+r.score; }, 0) / g.rel.length >= 70; }},
-  {id:'multi', n:'Multi-support', desc:'Sortir un jeu sur 3 plateformes simultanément', icon:'<i class=illustration-art0 aria-hidden=true></i>', check:function(){ return g.rel.some(function(r){ return (r.platforms||[]).length >= 3; }); }},
+  {id:'multi', cost:3, stats:{2:6,4:2}, n:'Multi-support', desc:'Sortir un jeu sur 3 plateformes simultanément', icon:'<i class=illustration-art0 aria-hidden=true></i>', check:function(){ return g.rel.some(function(r){ return (r.platforms||[]).length >= 3; }); }},
   {id:'intl', n:'International', desc:'Sortir un jeu traduit dans au moins 5 langues', icon:'<i class=illustration-art10 aria-hidden=true></i>', check:function(){ return g.rel.some(function(r){ return ((r.translations||[]).length + 1) >= 5; }); }},
   {id:'hit5', n:'Cinq hits', desc:'5 jeux à 80 ou plus', icon:'<i class=illustration-art3 aria-hidden=true></i>', check:function(){ return g.rel.filter(function(r){ return r.score >= 80; }).length >= 5; }},
 ];
@@ -3308,7 +3366,7 @@ function distributionButtons(game,index){
 }
 function storefront(){
   const games=g.rel.map((game,index)=>({game,index})).filter(({game})=>isOnSale(game)&&!game.archived);
-  const idle=g.teams.findIndex(t=>!t.proj);
+  const idle=g.teams.findIndex(availableTeam);
   const create='<button class="go" '+(idle<0?'disabled ':'')+'onclick="beginWorkshop()">Créer un projet</button>';
   const current=g.teams.map((t,i)=>t.proj?'<button onclick="workshopOpen=true;switchTeam('+i+')">Suivre « '+escapeAttribute(t.proj.name)+' »</button>':'').join('');
   return studioBanner()+'<div class="store-actions">'+create+current+'</div><section class="c store-home"><h3>Jeux en commercialisation <small>'+games.length+'</small></h3>'+
@@ -3334,7 +3392,7 @@ function closeComposer(){
   $('#mn button[onclick="beginWorkshop()"]')?.focus({preventScroll:true});
 }
 function beginWorkshop(){
-  if(curProj()){const idx=g.teams.findIndex(t=>!t.proj);if(idx<0)return;switchTeam(idx);}
+  if(!availableTeam(curTeam())){const idx=g.teams.findIndex(availableTeam);if(idx<0)return;switchTeam(idx);}
   projectSound(false);
   workshop(true);
 }
@@ -3361,6 +3419,10 @@ function projectLicenseControls(isSequelDraft,source) {
     '<span class="field-caption" '+plainTip(sequelHelp)+'>Développer une suite</span></label></div>';
 }
 
+function supportTeamsEditor(team){
+ const free=g.teams.filter(t=>t!==team && availableTeam(t));
+ return free.length?'<fieldset id="supportTeams"><legend>Équipes en renfort</legend>'+free.map(t=>'<label><input type="checkbox" id="helper'+t.id+'" value="'+t.id+'" onchange="updateScWarn()">'+escapeAttribute(t.name)+'</label>').join('')+'</fieldset>':'';
+}
 function pProj() {
   if(!workshopOpen && !g.over)return storefront();
   var team = curTeam();
@@ -3372,17 +3434,22 @@ function pProj() {
     return h;
   }
 
+  const lead=supportingLead(team);
+  if(lead)return h+'<section class="c"><h3>Équipe en renfort</h3><p>'+escapeAttribute(team.name)+' travaille sur « '+escapeAttribute(lead.proj.name)+' ».</p><button onclick="switchTeam('+g.teams.indexOf(lead)+')">Suivre le projet</button></section>';
   if (p) {
     h += '<div class="edition">'+visualCover(p)+'</div>';
     var duree = devDurationText(p);
+    const activePlan=p.ambitionModel?projectSchedule(team,p.need,getEngine(p.engineId),p.helpers,p.priority):null;
+    const remaining=activePlan && !coreDone(p) ? (activePlan.shared?' · Temps restant estimé '+durationBand(activePlan.days*(1-prog(p))):' · En attente de personnel'):'';
+
     var isDlc = p.dlcBaseId !== undefined;
     var hostMissing = p.hosted && !serverCapacity();
     var releaseBtn = '<button class="go" onclick="release()" ' +
       (canRelease(p) && !hostMissing?'':'disabled ') +
       tip(hostMissing ? 'Le monde est prêt à accueillir ses joueurs. Loue d’abord une capacité dans Serveurs.' :
-        'Après la production et une partie des tests, tu peux ouvrir les portes au public. Le polissage donne à l’équipe le temps de corriger les derniers défauts.') +
+        'À la fin du développement, tu peux publier le jeu. Le polissage donne à l’équipe le temps de corriger les derniers défauts.') +
       '><i class=illustration-art14 aria-hidden=true></i> Publier' + (isDlc ? ' le DLC' : '') + ' (' + Math.round(prog(p)*100) + ' %)</button>';
-    var teamSkillText = projectSkills(p).map((skill,i) => DIS[CORE_ROLES[i]] + ' ' + (skill ? nb(skill) : '—')).join(' · ');
+    var teamSkillText = projectSkills(p).map((skill,i) => p.need[CORE_ROLES[i]] ? DIS[CORE_ROLES[i]]+' '+(skill?nb(skill):'—') : '').filter(Boolean).join(' · ');
     h += '<div class="c"><h3><i class=illustration-art0 aria-hidden=true></i> ' + escapeAttribute(p.name) + ' <span class="mu" style="font-size:14px;font-weight:400">— ' + team.name + '</span></h3>' +
       '<p class="mu" ' + tip('Ce projet est développé par ' + team.name + ' et le développement a débuté il y a ' + duree + '.') + '>' +
         (isDlc?'DLC':p.sequelOf?'Suite · épisode '+p.installment:'Projet') + ' · ' + SC[p.sc].n + ' · ' + p.genre + ' · ' + (p.platforms||[p.plat]).join(', ') + ' · Le développement du jeu a débuté il y a ' + duree + '.</p>' +
@@ -3395,8 +3462,8 @@ function pProj() {
         '<button class="' + (team.crunch?'on':'') + '" ' + tip('Le crunch accélère la production, mais fatigue fortement l\'équipe.') + ' onclick="toggleCrunch()">' + (team.crunch?'Crunch actif':'Activer le crunch') + '</button>' +
       '</div>' +
       '<div class="clock-plan"><strong>'+Math.max(0,g.day-(p.startDay ?? g.day))+' jours écoulés</strong>'+
-      (p.plannedDays?' · Prévision initiale '+estimatedBand(p.plannedDays,7)+' jours':'')+'<div class="bar"><i style="width:'+Math.min(100,100*prog(p))+'%"></i></div><small>'+Math.round(100*prog(p))+' % du travail réalisé</small></div>'+
-      (p.attention?'<h4>Qualités du jeu</h4>'+qualityBars(qualityResult(p,productionScore(p)).values,p.genre,p.attention,true):'')+
+      (Number.isFinite(p.plannedDays) && p.plannedDays?' · Prévision initiale '+durationBand(p.plannedDays):'')+'<div class="bar"><i style="width:'+Math.min(100,100*prog(p))+'%"></i></div><small>'+Math.round(100*prog(p))+' % du travail réalisé · '+nb(sum(p.done))+' / '+nb(sum(p.need))+' pts'+remaining+'</small></div>'+
+      (p.attention?'<h4>Qualités du jeu</h4>'+qualityBars(qualityResult(p,productionScore(p)).values,p.genre,p.attention,true,p.ambitionModel):'')+
       '<h4>Priorité de l’équipe</h4><div class="bt">' +
       Object.keys(PRIORITIES).map(key => '<button class="'+(key===p.priority?'on':'')+'" onclick="setProjectPriority(\''+key+'\')" '+
         tip({
@@ -3406,17 +3473,6 @@ function pProj() {
         }[key])+'>'+PRIORITIES[key].name+'</button>').join('') +
       '</div><p class="mu">La production accélère le contenu et augmente les bugs. La stabilisation consacre plus de temps aux tests.</p>' +
       '<p class="mu">Budget engagé <strong>'+fmt(p.spent)+'</strong> · Compétence sur le travail effectué : '+teamSkillText+'</p>' +
-      '<h4>Temps de développement par métier</h4>' +
-      Object.keys(p.need).map(function(k) {
-        var pct = Math.min(100, p.done[k]/p.need[k]*100);
-        return '<div class="row progress" '+tip(({
-          prog:'Les développeurs assemblent les systèmes du jeu et mettent les fonctionnalités en état de marche.',
-          design:'Les concepteurs règlent les règles, les niveaux et le rythme de l’expérience.',
-          art:'Les artistes et techniciens sonores donnent au jeu son identité.',
-          qa:'Les testeurs cherchent les régressions et aident le studio à livrer une version fiable.'
-        })[k] || 'Ce relevé indique le travail accompli dans cet atelier.')+'><span>' + (DIS[k]||k) + '</span><div class="bar"><i style="width:' + pct + '%"></i></div>' +
-          '<span class="points"><strong>' + Math.round(pct) + ' %</strong><small>' + nb(p.done[k]) + ' / ' + nb(p.need[k]) + ' pts</small></span></div>';
-      }).join('') +
       '<h4>Bugs</h4>' +
       '<div class="row" ' + tip('Proportion de bugs non résolus détectés par les testeurs. Un jeu buggé aura une note plus basse et de mauvaises ventes.') + '><span>Bugs estimés</span><div class="bar"><i style="width:' + bugPct(p) + '%;background:var(--rust)"></i></div><span>' + (bugPct(p)<8?'Peu':bugPct(p)<25?'Modérés':'Nombreux') + '</span></div>' +
       '<h4>Hype et marketing</h4>' +
@@ -3496,23 +3552,21 @@ function pProj() {
       '<select id="pg" onchange="updateScWarn()">' + Object.keys(GEN).filter(k => genreAvailable(k,year))
         .sort((a,b) => (GENRE_START[a] || START_YEAR)-(GENRE_START[b] || START_YEAR))
         .map(k => '<option value="'+k+'" '+(isSequelDraft && k===source.genre?'selected':'')+'>'+k+'</option>').join('') + '</select></label>' +
-      '<label>'+fieldCaption('Ampleur','Un jeu ambitieux demande plus de temps de production et de tests, avec davantage de budget à engager.')+
-      '<select id="ps" onchange="updateScWarn()">' + SC.map(function(s,i){ return '<option value="'+i+'" '+(isSequelDraft && i===source.sc?'selected':'')+'>'+s.n+' ('+estimatedBand(s.pts*yearPointsScale(i),50)+' points de développement)</option>'; }).join('') + '</select></label>' +
       '<label>'+fieldCaption('Moteur','Les technologies du moteur peuvent améliorer la qualité du jeu terminé et accélérer sa production.')+
       '<select id="engsel" onchange="updateScWarn()">' + availEngines.map(function(e){ return '<option value="'+escapeAttribute(e.id)+'" '+(isSequelDraft && e.id===source.engineId?'selected':'')+'>'+escapeAttribute(e.label)+'</option>'; }).join('') + '</select></label>') +
     '</div>' + (isAddonDraft ? '' : '</div>') +
     '<div class="plan-tiles project-plan'+(isAddonDraft?' project-plan-dlc':'')+'">'+
       (isAddonDraft?['features']:['platforms','features','languages','distribution']).map(sectionButton).join('')+'</div>'+
-    qualityEditor()+
+    qualityEditor()+supportTeamsEditor(team)+
     (isAddonDraft ? '' : coverEditor()+sheetStart('platforms')) +
     (isAddonDraft ? '<p class="mu">' + source.platforms.join(', ') + '</p>' :
       '<div id="platChecks" class="feat-grid" aria-describedby="platformWarning">' + platHtml + '</div>') +
     (isAddonDraft?'':sheetEnd())+'<p id="platformWarning" class="field-error" aria-live="polite" data-form-output></p>' +
     '<p class="mu">Prix de vente : <strong id="projectPrice" data-form-output></strong></p>' +
     sheetStart('features') +
-    '<div class="feat-grid" id="featureList">' +
+    '<p class="feature-warning" role="status" data-form-output hidden></p><p id="traitBudget" data-form-output></p><p class="mu">Chaque employé affecté au jeu peut prendre en charge une fonctionnalité sans malus de durée. Les bonus et malus s’appliquent aux ambitions. Les fonctionnalités payantes sont débitées au lancement sur le solde de points partagé avec les doctrines.</p><div class="feat-grid" id="featureList">' +
       availFeatures.map(f => '<label class="feat-check"><input type="checkbox" value="'+f.id+'" onchange="updateScWarn()">'+
-        '<span class="field-caption" '+tip(f.desc)+'>'+art(({tech:6,design:31,art:27,mixed:7})[f.kind] ?? 14)+' '+f.n+'<small data-form-output></small></span></label>').join('') +
+        '<span class="field-caption" '+tip(f.desc)+'>'+art(({tech:6,design:31,art:27,mixed:7})[f.kind] ?? 14)+' '+f.n+'<small>'+traitDescription(f)+'</small></span></label>').join('') +
     '</div>' +
     sheetEnd() + (isAddonDraft ? '' : sheetStart('languages')+'<p>Anglais inclus</p>'+
     '<div class="feat-grid" id="transList">' +
@@ -3539,7 +3593,7 @@ function pProj() {
     '<label class="feat-check"><input type="checkbox" id="ppub" onchange="updateScWarn()">'+
     fieldCaption('Signer avec un éditeur','L’éditeur participe aux coûts et entretient l’intérêt du public en échange de la moitié des recettes du jeu.')+'</label>' +
     '<div id="pubBox" data-form-output class="warn-box mu"></div>'+sheetEnd()) +
-    '<div id="schedulePreview" class="clock-plan" data-form-output></div><div id="scWarn" data-form-output class="warn-box"></div>' +
+    '<p class="feature-warning" role="status" data-form-output hidden></p><div id="schedulePreview" class="clock-plan" data-form-output></div><div id="scWarn" data-form-output class="warn-box"></div>' +
     '<div class="bt" style="margin-top:20px">' +
       '<button class="go" id="startDev" onclick="startProj()" '+tip('L’équipe ouvre le chantier et engage les frais de préparation approuvés.')+'><i class=illustration-art0 aria-hidden=true></i> Lancer le développement</button>' +
       (source ? '<button onclick="closeDraft()" '+tip('Retourne au formulaire général avant d’engager des frais.')+'>Annuler ce projet</button>' : '') +
@@ -3582,10 +3636,10 @@ function pStaff() {
       var disabled = g.cash < hireCost || g.staff.length>=cap;
       var reason = g.staff.length>=cap ? 'Capacité maximale atteinte (' + cap + ' places).' : g.cash < hireCost ? 'Trésorerie insuffisante (' + fmt(hireCost) + ' requis).' : 'Recruter ce candidat : ' + fmt(hireCost) + ' de frais d\'agence.';
       return '<div class="row" id="candidate-' + s.id + '">' +
-        '<span ' + tip(ROLES[s.role] + ' — compétences ' + Math.round(s.skill) + '.') + '>' + s.name + '<br><small class="mu">' + ROLES[s.role] + '</small></span>' +
-        '<div ' + tip('Compétences du candidat : ' + Math.round(s.skill) + '.') + '><div class="bar"><i style="width:' + Math.min(100,s.skill/100) + '%"></i></div><small class="mu">Compétences ' + Math.round(s.skill) + '</small></div>' +
+        '<span ' + tip(ROLES[s.role] + ' — compétences ' + Math.round(s.skill) + '.') + '>' + s.name + '<br><small class="mu">' + ROLES[s.role] + ' · Équipe à l’embauche : '+escapeAttribute(team.name)+'</small></span>' +
+        '<div ' + tip('Compétences du candidat : ' + Math.round(s.skill) + '.') + '><div class="bar"><i style="width:' + Math.min(100,s.skill/100) + '%"></i></div><small class="mu">Compétences ' + Math.round(s.skill) + ' · Moral '+Math.round(s.morale)+' %</small></div>' +
         '<span ' + tip('Salaire mensuel demandé.') + '>' + fmt(s.brut) + '/mois</span>' +
-        '<button onclick="hire(' + i + ')" ' + (disabled?'disabled ':'') + tip('Une recrue vient renforcer l’atelier.',reason,[['ok','+1 salarié'],['ko','−'+fmt(hireCost)+' de frais d’agence']]) + '>Embaucher (' + fmt(hireCost) + ')</button>' +
+        '<div class="bt"><button onclick="hire(' + i + ')" ' + (disabled?'disabled ':'') + tip('Une recrue vient renforcer l’atelier.',reason,[['ok','+1 salarié'],['ko','−'+fmt(hireCost)+' de frais d’agence']]) + '>Embaucher (' + fmt(hireCost) + ')</button><button disabled title="Disponible après embauche">Formation</button><button disabled title="Disponible après embauche">Licencier</button></div>' +
       '</div>';
     }).join('') +
   '</div>';
@@ -4131,7 +4185,7 @@ const companyBranches = [
   ['design','Conception',31,'Des méthodes de prototypage et de documentation pour construire les jeux.',
     ['Atelier de prototypes','design',.05,'Des prototypes rapides aident à trier les idées de jeu.'],
     ['Bibliothèque de mécaniques','design',.06,'Les mécaniques déjà éprouvées servent de base aux nouvelles.'],
-    ['Éditeur de niveaux','design',.08,'Les concepteurs assemblent et retouchent les niveaux plus vite.'],
+    ['Atelier d’écriture','design',.08,'Les scénaristes écrivent et révisent les histoires plus vite.'],
     ['Cellule de conception','design',.10,'Une équipe dédiée garde un rythme de conception régulier.'],
     ['Revues jouables','production',.03,'Les revues de prototype réduisent les allers-retours entre métiers.'],
     ['Documentation vivante','production',.04,'Les décisions de conception sont accessibles au reste de l’équipe.'],
@@ -4145,7 +4199,7 @@ const companyBranches = [
     ['Cabine d’enregistrement','art',.07,'La prise de son et les retouches se font plus vite en interne.'],
     ['Régie audio','production',.04,'Une régie commune facilite l’intégration du son dans chaque projet.']],
   ['quality','Assurance qualité',26,'Des tests réutilisables et des cycles de correction réguliers.',
-    ['Registre des anomalies','qa',.05,'Les testeurs retrouvent plus vite les problèmes déjà connus.'],
+    ['Registre des anomalies','qa',.05,'Les développeurs retrouvent plus vite les problèmes déjà connus.'],
     ['Scénarios de test','qa',.07,'Les parcours critiques sont vérifiés de manière systématique.'],
     ['Parc de test','qa',.09,'Des machines dédiées permettent de vérifier plusieurs configurations.'],
     ['Équipe de validation','qa',.12,'Une équipe organisée autour des sorties accélère les vérifications.'],
@@ -4216,6 +4270,12 @@ function staffCapacity() {
 function developmentXP(project) {
   return Object.values(project.done || {}).reduce((total,points)=>total+(Number(points)||0),0)+(Number(project.polish)||0);
 }
+function creditDevelopment(p,before){
+  const work=Math.max(0,developmentXP(p)-before);
+  const earned=work*(1+.05*Math.max(0,currentYear()-START_YEAR));
+  p.earnedDevelopment=(p.earnedDevelopment ?? before)+earned;
+  g.company.earned+=earned;
+}
 function companyAvailable() {
   return Math.floor(g.company.earned+1e-7)-g.company.spent;
 }
@@ -4230,7 +4290,7 @@ function migrateCompany(data) {
     earned+=game.developmentPoints ?? work;
     for (const addon of game.addons) earned+=addon.developmentPoints ?? work*DLC_PROFILES.standard.effort;
   }
-  for (const team of data.teams) if (team.proj) earned+=developmentXP(team.proj);
+  for (const team of data.teams) if (team.proj) earned+=team.proj.earnedDevelopment ?? developmentXP(team.proj);
   data.company={earned,spent:0,unlocked:[]};
 }
 function showCompanyBranch(key) {
@@ -4274,8 +4334,8 @@ function pCompany() {
     launch:['Relations presse','Communautés'],delivery:['Fabrication','Localisation'],
   };
   return '<section class="c company-tree" id="company-tree"><h3>'+art(7)+' Arbre d’entreprise</h3>'+
-    '<p><strong class="company-xp">'+nb(companyAvailable())+' XP disponibles</strong> · '+g.company.unlocked.length+' doctrines adoptées</p>'+
-    '<p class="mu">Les points de développement produits par toutes tes équipes deviennent de l’XP. Choisis une branche et adopte ses doctrines dans l’ordre.</p>'+
+    '<p><strong class="company-xp">'+nb(companyAvailable())+' points de développement disponibles</strong> · '+g.company.unlocked.length+' doctrines adoptées</p>'+
+    '<p class="mu">Tes équipes gagnent des points en développant des jeux. À travail égal, elles en gagnent davantage chaque année. Ces points financent les fonctionnalités des projets et les doctrines du studio.</p>'+
     '<div class="company-branches" role="group" aria-label="Branches de l’entreprise">'+companyBranches.map(([branch,name])=>
       '<button type="button" aria-pressed="'+(branch===key)+'" onclick="showCompanyBranch(\''+branch+'\')">'+name+'</button>').join('')+'</div>'+
     '<h4 class="company-branch-title">'+art(icon)+' '+title+'</h4><p class="mu">'+description+'</p>'+
@@ -4384,17 +4444,6 @@ function splitTopics(card) {
     return {panel,label,key:label};
   });
 }
-function employeeFiles(root){
-  root.querySelectorAll('[id^="staff-"],[id^="candidate-"]').forEach(row=>{
-    const file=document.createElement('details');
-    file.className='employee-file';file.id='file-'+row.id;
-    const summary=document.createElement('summary');
-    const name=row.firstElementChild;
-    summary.append(name);
-    row.before(file);
-    file.append(summary,row);
-  });
-}
 function sectionMenu(entries,id,anchor,label){
   if(entries.length===0)return;
   const key=sectionChoices.get(id);
@@ -4425,7 +4474,7 @@ document.addEventListener('click',e=>{
   const b=e.target.closest('.topic-menu button');if(b)chooseTopic(b.parentElement,b.dataset.topic);
 });
 function organizeProjectChoices(root) {
-  root.querySelectorAll('#newProject select:not([hidden])').forEach(select=>{
+  root.querySelectorAll('#newProject select:not([hidden]):not(#pg):not(#engsel)').forEach(select=>{
     const label=select.closest('label');
     const field=document.createElement('div');
     field.className='project-choice';
@@ -4494,7 +4543,7 @@ function organizePage(root,id){
     }
     return;
   }
-  if(id===1)employeeFiles(root);
+
   if(id===0 || id===3)return;
   if([4,11].includes(id)){
     entries=splitTopics(first);
@@ -4839,6 +4888,7 @@ function load() {
     var legacyLicenses = !Array.isArray(data.licenses);
     data.licenses = legacyLicenses ? [] : data.licenses;
     data.nextLicenseId ||= 1;
+    for (const member of [...data.staff,...(data.cand || [])]) if(member.role==="qa") member.role="prog";
     data.teams.forEach(function(t) {
       if (t.proj) {
         if (!Array.isArray(t.proj.platforms)) t.proj.platforms = [t.proj.plat || 'PC'];

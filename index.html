@@ -1632,6 +1632,7 @@ FEATURES.push(
   {"id":"gestes-expressifs-proceduraux","n":"Gestes expressifs procéduraux","y":2025,"kind":"art","stats":{"1":12,"0":7},"desc":"Les gestes d’un personnage suivent le ton de ses répliques.","cost":8,"points":532,"sales":0,"score":0},
   {"id":"compagnons-a-memoire-persistante","n":"Compagnons à mémoire persistante","y":2026,"kind":"design","stats":{"0":12,"2":7},"desc":"Les compagnons se souviennent des promesses tenues au fil des missions.","cost":8,"points":532,"sales":0,"score":0}
 );
+const retiredFeatures = new Set(["bande-son-a-pistes-separees", "carnet-de-personnages", "jingles-de-victoire", "mots-de-passe-de-niveau", "profils-de-commandes", "traces-persistantes", "ai-npcs", "br", "anti-cheat", "season-pass", "physique", "open-world", "contre-la-montre", "antipiracy"]);
 // Each speciality draws resources from a different part of production.
 for (const feature of FEATURES) {
   const gains=Object.values(feature.stats).filter(value=>value>0);
@@ -1640,7 +1641,7 @@ for (const feature of FEATURES) {
   const existing=Object.keys(feature.stats).find(key=>feature.stats[key]<0);
   const tradeoff=existing ?? priorities[feature.kind].find(key=>feature.stats[key]===undefined);
   feature.stats[tradeoff]=-Math.max(1,Math.round(gain*(feature.cost ? .36 : .50)));
-  feature.discoveryXP=Math.max(1,Math.round(gain/6));
+
 }
 function ownsFeature(f) {
   return starterFeatures.includes(f.id) || g.featureResearch.includes(f.id);
@@ -1653,7 +1654,7 @@ function featureResearchPrice(f) {
 }
 function buyFeature(id) {
   const f=FEATURES.find(item=>item.id===id);
-  if (!f || ownsFeature(f) || currentYear()<f.y) return;
+  if (!f || retiredFeatures.has(id) || ownsFeature(f) || currentYear()<f.y) return;
   const price=featureResearchPrice(f);
   if (g.cash<price) return toast('Trésorerie insuffisante.','ko');
   spend(price,'Recherche de fonctionnalité · '+f.n);
@@ -2015,10 +2016,10 @@ function cue(name,priority=1){
     const next=pendingFoley;pendingFoley=null;foleyTimer=null;playFoley(next.name);
   },0);
 }
-const tabFoley=['folder','stamp','news','metal','board','coins','box','cards','sheet','punch','clip','toggle'];
+const tabFoley=['punch','stamp','news','metal','board','coins','box','cards','sheet','punch','clip','toggle'];
 const buttonFoleyGroups={
   tick:'balance speed quality day month four empty',
-  folder:'newgame team sequel dlc archive',
+  folder:'team sequel dlc archive',
   cards:'record portfolio collection training crew assign dice cover-load',
   sheet:'sales ledger flyers',
   clip:'licences cover-save restart dismiss',
@@ -2029,7 +2030,7 @@ const buttonFoleyGroups={
   punch:'crunch', enter:'ok', box:'package truck release',
   toggle:'key unplug return entrance cover-cancel rest',
   ratchet:'cover-confirm', key:'rename cover-delete',
-  news:'blueprint', pause:'stop discard tear'
+  news:'blueprint newgame', pause:'stop discard tear'
 };
 const buttonFoley=new Map(Object.entries(buttonFoleyGroups).flatMap(([sound,actions])=>actions.split(' ').map(action=>[action,sound])));
 document.addEventListener('click',event=>{
@@ -2049,7 +2050,7 @@ document.addEventListener('click',event=>{
 document.addEventListener('change',event=>{
   if(event.target.matches('select,input[type=color],input[type=range],input[type=file]'))cue('tick',2);
 });
-function projectSound(started){cue(started?'develop':'folder',3);}
+function projectSound(started){cue(started?'develop':tabFoley[2],3);}
 
 function toast(m,c) {
   if(c==='ko')cue('pause',5);
@@ -3098,33 +3099,17 @@ function traitSlots(){
   const ids=[curTeam().id,...selectedHelpers()];
   return g.staff.filter(m=>ids.includes(m.teamId)).length;
 }
-function traitCost(traits){return traits.reduce((n,t)=>n+t.cost,0);}
 function traitIssue(traits){
   if(traits.some(f=>!ownsFeature(f) || f.y>currentYear()))return 'Recherche de fonctionnalité requise.';
-  if(traitCost(traits)>companyAvailable())return 'Expérience insuffisante pour intégrer ces fonctionnalités.';
   return '';
 }
-function usedFeatures(){
-  return new Set(g.featureDebuts || []);
-}
+
 function traitDescription(t,rich=false){
   const parts=Object.entries(t.stats).map(([i,v])=>[v>0?'gain':'loss',(v>0?'+':'−')+Math.abs(v)+' '+dimensions[i].toLowerCase()]);
-  if(t.cost) parts.push(['loss','−'+t.cost+' Expérience au lancement']);
-  if(!usedFeatures().has(t.id)) parts.push(['experience','+'+t.discoveryXP+' Expérience à la première publication']);
+
   return parts.map(([kind,label])=>rich?'<span class="trait-'+kind+'">'+label+'</span>':label).join(' · ');
 }
-function awardFeatureDebuts(project){
-  const used=usedFeatures();
-  let reward=0;
-  for(const id of project.features || []){
-    const feature=FEATURES.find(f=>f.id===id);
-    if(feature && !used.has(id)){used.add(id);reward+=feature.discoveryXP;}
-  }
-  g.featureDebuts=[...used];
-  g.company.earned+=reward;
-  if(reward)L('Première utilisation en jeu · +'+reward+' Expérience.','ok');
-  return reward?'<p class="trait-experience">+'+reward+' Expérience pour les fonctionnalités publiées pour la première fois.</p>':'';
-}
+
 function projectChoices() {
   var source = draftSource();
   var dlc = projectDraft?.kind === 'dlc' && source;
@@ -3257,8 +3242,8 @@ function updateScWarn() {
     if (pressure) pressure.disabled = p.monetization==='none';
   }
   $$('#newProject .project-choice > select').forEach(syncProjectChoice);
-  const slots=traitSlots(),traitPrice=traitCost(p.features),balance=companyAvailable();
-  $('#traitBudget').textContent=p.features.length+' / '+slots+' fonctionnalités · '+traitPrice+' Expérience au lancement · Solde de '+nb(balance);
+  const slots=traitSlots();
+  $('#traitBudget').textContent=p.features.length+' / '+slots+' fonctionnalités';
   const extra=p.features.length-slots;
   for(const warning of $$('.feature-warning')){
     warning.hidden=extra<=0;
@@ -3266,7 +3251,7 @@ function updateScWarn() {
   }
   for(const input of $$('#featureList input')){
     const trait=FEATURES.find(f=>f.id===input.value);
-    input.disabled=!input.checked && trait.cost+traitPrice>balance;
+    input.disabled=false;
   }
   if (!sum(p.attention)) {el.textContent='';$('#schedulePreview').textContent='Ajoute des points pour estimer la durée.';return;}
   if (!p.platforms.length) { el.textContent = ''; $('#schedulePreview').textContent='Choisis une plateforme pour estimer la durée.';return; }
@@ -3443,7 +3428,6 @@ function startProj() {
   if (pub) initHype = Math.max(initHype, PUB.hype);
 
   var isOwn = g.engines.some(e => e.id === engineId);
-  g.company.spent+=traitCost(choices.features);
   spend(upfront.kits, 'Kits de développement (' + plats.join(', ') + ') de « ' + n + ' »');
   spend(upfront.translations, 'Traductions de « ' + n + ' »');
   if (dlc) {
@@ -3686,7 +3670,7 @@ function release(team = curTeam()) {
        '<p>' + press(score) + '</p>' +
        (record.bug>20?'<p class="wa">Attention : de nombreux bugs signalés.</p>':'') +
        '<div class="bt" style="justify-content:center"><button class="go" data-action-art="ok" onclick="closeModal()">Continuer</button></div>';
-  modal('<div style="width:106px;margin:0 auto 12px">'+visualCover(record)+'</div>'+modalBody+awardFeatureDebuts(p));
+  modal('<div style="width:106px;margin:0 auto 12px">'+visualCover(record)+'</div>'+modalBody);
   save();
   render();
   countUp(score);
@@ -3716,7 +3700,7 @@ function publishAddon(team, project, score) {
   team.crunch = false;
   setClock(false);
   L('Le DLC « ' + project.name + ' » est disponible pour « ' + game.name + ' ».', 'ok');
-  modal('<h3>DLC publié</h3>'+awardFeatureDebuts(project)+'<p><strong>' + escapeAttribute(project.name) + '</strong> · ' + score +
+  modal('<h3>DLC publié</h3>'+'<p><strong>' + escapeAttribute(project.name) + '</strong> · ' + score +
     '/100 · ' + fmt(dlcPrice(project.sc,project.dlcProfile)) + '</p><p>Le DLC est vendu aux propriétaires du jeu de base. ' +
     (relaunchUnits > 0 ? 'La sortie relance légèrement les ventes du jeu pendant 30 jours.' : '') +
     '</p><div class="bt" style="justify-content:center"><button class="go" data-action-art="ok" onclick="closeModal()">Continuer</button></div>');
@@ -4455,7 +4439,7 @@ function pProj() {
   var isAddonDraft = projectDraft?.kind === 'dlc' && source;
   var isSequelDraft = projectDraft?.kind === 'sequel' && source;
   var year = currentYear();
-  var availFeatures = FEATURES.filter(f => year >= f.y && ownsFeature(f)).sort((a,b) => a.y-b.y);
+  var availFeatures = FEATURES.filter(f => !retiredFeatures.has(f.id) && year >= f.y && ownsFeature(f)).sort((a,b) => a.y-b.y);
   var availEngines = g.engines.map(function(e){ return {id:e.id, label:e.name + ' (moteur maison)'}; }).concat(
     g.stockEngines.map(function(id){ var e = STOCK_ENGINES.find(function(x){ return x.id === id; }); return {id: id, label: e.n + ' (' + Math.round(e.royalty*100) + '% de redevance)'}; })
   );
@@ -4523,7 +4507,7 @@ function pProj() {
     (isAddonDraft?'':sheetEnd())+'<p id="platformWarning" class="field-error" aria-live="polite" data-form-output></p>' +
     '<p class="mu">Prix de vente : <strong id="projectPrice" data-form-output></strong></p>' +
     sheetStart('features') +
-    '<p class="feature-warning" role="status" data-form-output hidden></p><p id="traitBudget" data-form-output></p><p class="mu">Chaque employé affecté au jeu peut prendre en charge une fonctionnalité sans malus de durée. Les bonus et malus s’appliquent aux ambitions. Les fonctionnalités payantes sont débitées au lancement sur le solde d’Expérience partagé avec les doctrines.</p><div class="feat-grid" id="featureList">' +
+    '<p class="feature-warning" role="status" data-form-output hidden></p><p id="traitBudget" data-form-output></p><p class="mu">Chaque employé affecté au jeu peut prendre en charge une fonctionnalité sans malus de durée. Les bonus et malus s’appliquent aux ambitions.</p><div class="feat-grid" id="featureList">' +
       availFeatures.map(f => '<label class="feat-check"><input type="checkbox" value="'+f.id+'" onchange="updateScWarn()">'+
         '<span class="field-caption" '+tip(f.desc)+'>'+art(({tech:6,design:31,art:27,mixed:7})[f.kind] ?? 14)+' '+f.n+'<small>'+traitDescription(f,true)+'</small></span></label>').join('') +
     '</div>' +
@@ -4693,8 +4677,7 @@ function pMarket() {
   return h;
 }
 
-const researchFlavor={"ost": "Le compositeur reprend le thème au clavier. Cette fois, toute l’équipe le fredonne.", "story": "Les scènes du dernier chapitre couvrent déjà le mur de la salle de réunion.", "multi": "Deux manettes, un canapé et une revanche qui commence aussitôt.", "sandbox": "Les testeurs ont délaissé la mission pour construire leur propre terrain de jeu.", "online": "Un second joueur rejoint la partie depuis une autre ville.", "mmo": "La place du village reste animée longtemps après la déconnexion du premier aventurier.", "open-world": "Depuis la crête, on distingue le port que l’on pourra rejoindre à pied.", "physique": "Sur le bureau du programmeur, une pile de caisses bascule enfin comme prévu.", "hd-tex": "Même en approchant la caméra, on distingue les coutures du blouson.", "live": "La prochaine mise à jour attend déjà son tour sur le serveur de test.", "vr-feat": "La testeuse se penche pour regarder derrière le cockpit.", "br": "Le cercle se referme. Deux silhouettes cherchent encore un abri.", "rt-feat": "Dans la vitrine, le reflet du néon suit la caméra.", "ai-npcs": "Le tavernier improvise une réponse à la question du joueur.", "tutorial": "Le premier obstacle suffit à apprendre le saut. Le suivant laisse le joueur essayer seul.", "mod-support": "Un joueur a remplacé la carte entière avec les outils du studio.", "access": "Un testeur change le contraste et distingue enfin son équipe sur le terrain.", "ngplus": "Le générique se termine. Une nouvelle partie commence avec le matériel du héros.", "anti-cheat": "Dans le classement, un record suspect attire l’attention des modérateurs.", "season-pass": "Les joueurs déplient le calendrier des prochaines aventures.", "lootboxes": "Le couvercle se soulève. Un instant encore, le contenu reste un mystère.", "crossplay": "Deux amis lancent la même partie depuis des machines différentes.", "photo-mode": "La lumière tombe juste. Le joueur fige la scène pour cadrer son portrait.", "speedrun": "À chaque essai, le coureur cherche le virage qui lui fera gagner un dixième.", "antipiracy": "Le disque tourne pendant que la machine vérifie sa licence."};
-
+const researchFlavor={"ost": "Musiques composées spécifiquement pour le jeu.", "story": "Campagne suivant une histoire scénarisée.", "multi": "Multijoueur sur un même appareil.", "sandbox": "Mode de jeu offrant une grande liberté de création et d’action.", "mmo": "Monde persistant partagé par un grand nombre de joueurs.", "hd-tex": "Textures de résolution élevée.", "rt-feat": "Simulation des réflexions et de l’éclairage par lancer de rayons.", "tutorial": "Tutoriel expliquant les règles et les commandes du jeu.", "mod-support": "Prise en charge des modifications créées par les joueurs.", "ngplus": "Nouvelle partie conservant certains acquis de la précédente.", "anti-cheat": "Système de détection et de prévention de la triche.", "season-pass": "Accès groupé à des contenus additionnels.", "lootboxes": "Coffres contenant des récompenses aléatoires.", "crossplay": "Multijoueur entre différentes plateformes.", "photo-mode": "Outils de capture et de personnalisation de photos en jeu.", "speedrun": "Mode de jeu dédié aux défis de rapidité.", "antipiracy": "Protection contre la copie non autorisée du jeu.", "tableau-des-records": "Classement des meilleurs scores.", "portraits-de-dialogue": "Portraits des personnages affichés pendant les dialogues.", "passages-secrets": "Zones cachées accessibles par exploration.", "commandes-reconfigurables": "Personnalisation des commandes.", "fins-alternatives": "Plusieurs dénouements selon les choix du joueur.", "inventaire-illustre": "Inventaire avec représentation visuelle des objets.", "points-de-passage": "Reprise de la partie depuis des points de contrôle.", "carte-des-environs": "Carte des zones explorées.", "themes-de-personnages": "Thèmes musicaux associés aux personnages.", "objets-combinables": "Combinaison d’objets pour créer de nouveaux objets ou résoudre des énigmes.", "ralentis-de-fin-de-manche": "Relecture au ralenti des actions importantes.", "contre-la-montre": "Défis avec une limite de temps.", "journal-de-quetes": "Suivi des quêtes et de leurs objectifs.", "meteo-visuelle": "Effets visuels météorologiques.", "editeur-de-niveaux": "Création de niveaux personnalisés.", "ambiances-de-lieux": "Ambiances sonores propres aux environnements.", "rivaux-fantomes": "Adversaires virtuels reproduisant des performances enregistrées.", "scenes-doublees": "Doublage vocal des scènes et dialogues.", "camera-orbitale": "Caméra pivotant autour du personnage.", "musique-de-combat-adaptative": "Musique évoluant selon les situations de combat.", "salles-dentrainement": "Espaces dédiés à l’apprentissage et à la pratique.", "reputation-des-factions": "Système de réputation auprès des factions.", "cycles-jour-et-nuit": "Alternance dynamique du jour et de la nuit.", "ordres-aux-equipiers": "Commandes permettant de diriger les alliés.", "artisanat-par-recettes": "Fabrication d’objets à partir de ressources.", "echos-selon-les-salles": "Réverbération sonore adaptée aux environnements.", "campagnes-a-embranchements": "Campagnes dont le déroulement varie selon les décisions.", "degats-localises": "Dégâts variables selon la zone touchée.", "collections-a-completer": "Objets à collectionner pendant la partie.", "patrouilles-reactives": "Patrouilles s’adaptant aux actions du joueur.", "transitions-musicales": "Enchaînement fluide des morceaux de musique.", "defis-a-contraintes": "Défis imposant des règles supplémentaires.", "decors-destructibles": "Éléments du décor pouvant être détruits.", "animations-contextuelles": "Animations adaptées aux interactions et à l’environnement.", "souvenirs-a-explorer": "Séquences jouables retraçant des événements passés.", "epreuves-quotidiennes": "Défis renouvelés chaque jour.", "puzzles-a-solutions-multiples": "Énigmes pouvant être résolues de plusieurs façons.", "biomes-proceduraux": "Génération automatique de régions aux caractéristiques distinctes.", "narration-environnementale": "Récit transmis par les éléments du décor.", "mouvements-enchaines": "Transitions fluides entre les mouvements du personnage.", "foule-reactive": "Foules réagissant aux événements et aux obstacles.", "reorchestration-en-temps-reel": "Arrangement musical évoluant pendant la partie.", "outils-de-mise-en-scene": "Outils de composition de scènes personnalisées.", "aides-de-navigation-sonore": "Repères audio facilitant les déplacements.", "scenarios-communautaires": "Création et partage de scénarios par les joueurs.", "dialogues-reactifs-en-combat": "Dialogues adaptés aux événements du combat.", "retours-haptiques-contextuels": "Vibrations adaptées aux actions et aux surfaces.", "paysages-sonores-spatialises": "Son positionné dans l’espace tridimensionnel.", "routes-de-quete-adaptatives": "Quêtes dont le déroulement s’adapte aux événements.", "ecosysteme-simule": "Simulation des interactions entre espèces et ressources.", "montage-automatique-des-temps-forts": "Création automatique de résumés vidéo des parties.", "gestes-expressifs-proceduraux": "Génération automatique de gestes adaptés aux dialogues.", "compagnons-a-memoire-persistante": "Compagnons conservant en mémoire les interactions passées."};
 function featurePicture(f){
   return '<span aria-hidden="true" class="feature-picture feature-img-'+f.id+'"></span>';
 }
@@ -4712,11 +4695,10 @@ function inspectFeature(id){
   const f=FEATURES.find(item=>item.id===id);
   if(!f)return;
   const effects=Object.entries(f.stats).sort((a,b)=>b[1]-a[1]).map(([i,v])=>[v,'en '+dimensions[i].toLowerCase()]);
-  if(f.cost)effects.push([-f.cost,'Expérience au lancement du projet']);
-  if(!usedFeatures().has(id))effects.push([f.discoveryXP,'Expérience à la première publication']);
+
   const benefits=Object.entries(f.stats).filter(([,v])=>v>0).map(([i])=>['l’histoire','les graphismes','le gameplay','les musiques','la technique','le contenu'][i]);
   const rules={crossplay:'Son intégration exige au moins deux plateformes et le multijoueur en ligne.',br:'Ce mode exige le multijoueur en ligne.','anti-cheat':'Son intégration exige le multijoueur en ligne.','season-pass':'Son intégration exige le service continu.',mmo:'Prévois au moins un projet indé, le multijoueur en ligne et de la capacité serveur.'};
-  const detail='Débloque cette option pour tes futurs jeux. Si tu lui réserves un emplacement, ses bonus portent sur '+benefits.join(' et ')+'. '+(rules[id] || (f.cost?'':'Son intégration est gratuite en Expérience.'));
+  const detail='Débloque cette option pour tes futurs jeux. Si tu lui réserves un emplacement, ses bonus portent sur '+benefits.join(' et ')+'. '+(rules[id] || '');
   if(id==='tutorial')effects.push([5,'de hype à la sortie si les tests atteignent 85 % et la note 60/100']);
   if(id==='access')effects.push([5,'de hype à la sortie si les tests dépassent 85 %']);
   if(id==='crossplay')effects.push([6,'de hype à la sortie sur plusieurs plateformes']);
@@ -4733,13 +4715,13 @@ function inspectFeature(id){
 }
 function pResearch() {
   const year=currentYear();
-  const ordered=FEATURES.slice().sort((a,b)=>a.y-b.y || a.n.localeCompare(b.n,'fr'));
+  const ordered=FEATURES.filter(f=>!retiredFeatures.has(f.id)).sort((a,b)=>a.y-b.y || a.n.localeCompare(b.n,'fr'));
   const groups=[
     ['Disponibles',ordered.filter(f=>f.y<=year && !ownsFeature(f))],
     ['Acquises',ordered.filter(ownsFeature)],
     ['À venir',ordered.filter(f=>f.y>year && !ownsFeature(f))]
   ];
-  let h='<section class="c" id="feature-research"><h3>Recherches fonctionnalités</h3><p class="mu">Finance une recherche pour débloquer sa fonctionnalité sur tous tes futurs projets. Son intégration utilise ensuite l’Expérience du studio.</p>';
+  let h='<section class="c" id="feature-research"><h3>Recherches fonctionnalités</h3><p class="mu">Finance une recherche pour débloquer sa fonctionnalité sur tous tes futurs projets.</p>';
   for(const [label,items] of groups){
     if(!items.length)continue;
     h+='<h4>'+label+' · '+items.length+'</h4><div class="tech-grid feature-catalog">';
